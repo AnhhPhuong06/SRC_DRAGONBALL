@@ -224,8 +224,9 @@ public class AlyraManager {
     private static HikariConfig createConfig(String poolName, String databaseName) {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName(DRIVER);
-        config.setJdbcUrl(String.format("jdbc:mysql://%s:%s/%s?useUnicode=yes&characterEncoding=UTF-8",
-                DB_HOST, DB_PORT, databaseName));
+        String protocol = "org.mariadb.jdbc.Driver".equals(DRIVER) ? "mariadb" : "mysql";
+        config.setJdbcUrl(String.format("jdbc:%s://%s:%s/%s?useUnicode=yes&characterEncoding=UTF-8",
+                protocol, DB_HOST, DB_PORT, databaseName));
         config.setUsername(DB_USER);
         config.setPassword(DB_PASSWORD);
         config.setMinimumIdle(MIN_CONN);

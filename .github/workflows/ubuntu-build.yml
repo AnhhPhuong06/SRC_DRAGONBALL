@@ -7,6 +7,21 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_ROOT_PASSWORD: ephemeral-root-password
+          MARIADB_DATABASE: jdbc_test
+          MARIADB_USER: jdbc_ci
+          MARIADB_PASSWORD: ephemeral-jdbc-password
+        ports:
+          - 3307:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -26,3 +41,12 @@ jobs:
           mkdir -p build/driver-check
           javac -proc:none -d build/driver-check test/JdbcDriverLoadTest.java
           java -cp "dist/chienbinhlucy.jar:build/driver-check" JdbcDriverLoadTest
+      - name: Connect production database layer to real MariaDB 10.11
+        env:
+          NRO_JDBC_INTEGRATION: 'true'
+          JDBC_CI_PASSWORD: ephemeral-jdbc-password
+        run: |
+          javac -proc:none -cp dist/chienbinhlucy.jar -d build/driver-check test/JdbcMariaDbIntegrationTest.java
+          mkdir -p build/jdbc-fixture
+          cd build/jdbc-fixture
+          java -cp "$GITHUB_WORKSPACE/dist/chienbinhlucy.jar:$GITHUB_WORKSPACE/build/driver-check" JdbcMariaDbIntegrationTest
