@@ -57,6 +57,7 @@ class TermuxSetupTest(unittest.TestCase):
         text = self.config.read_text()
         self.assertIn("original-config", text)
         self.assertIn("database.port=3307", text)
+        self.assertIn("database.driver=com.mysql.jdbc.Driver", text)
         self.assertIn("database.user=svt_", text)
         backups = list((self.root / ".termux").glob("alyra-before-*.properties"))
         self.assertEqual(len(backups), 1)

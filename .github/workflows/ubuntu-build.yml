@@ -21,3 +21,8 @@ jobs:
           python3 -m py_compile tools/*.py
       - name: Compile and package without starting the game or database
         run: python3 tools/server_cli.py build
+      - name: Load configured JDBC driver through packaged classpath
+        run: |
+          mkdir -p build/driver-check
+          javac -proc:none -d build/driver-check test/JdbcDriverLoadTest.java
+          java -cp "dist/chienbinhlucy.jar:build/driver-check" JdbcDriverLoadTest

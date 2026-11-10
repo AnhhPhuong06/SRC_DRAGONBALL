@@ -89,7 +89,7 @@ def setup():
             subprocess.run(client + [name], stdin=source, check=True)
     if config.exists():
         shutil.copy2(config, STATE / ("alyra-before-" + str(time.time_ns()) + ".properties"))
-    text = ("database.driver=com.mysql.cj.jdbc.Driver\n"
+    text = ("database.driver=com.mysql.jdbc.Driver\n"
             "database.host=127.0.0.1\ndatabase.port=" + str(port) + "\n"
             "database.name=" + names[0] + "\ndatabase.name_data=" + names[1] + "\n"
             "database.user=" + account + "\ndatabase.pass=" + password + "\n"
