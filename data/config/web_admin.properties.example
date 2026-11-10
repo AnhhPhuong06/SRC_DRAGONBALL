@@ -1,0 +1,10 @@
+# Web admin configuration (copy keys into web_admin.properties after reviewing).
+# The panel runs inside the game JVM; it stops when that JVM stops.
+bind=127.0.0.1
+port=8888
+# Enable only when the browser accesses the panel through HTTPS.
+secure_cookies=false
+
+# Browser administrators are in MySQL web_admin, not game account.is_admin.
+# Legacy username/password properties are ignored. No default password exists.
+# Initialize explicitly with server.web.tools.WebAdminInit; see WEB_PANEL.md.

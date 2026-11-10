@@ -1,0 +1,3437 @@
+{
+  "version": 1,
+  "revision": 3,
+  "nextId": 250,
+  "rules": [
+    {
+      "id": 1,
+      "name": "Android13 · #382",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_13",
+      "itemId": 382,
+      "chance": 15.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 2,
+      "name": "Android14 · #382",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_14",
+      "itemId": 382,
+      "chance": 15.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 3,
+      "name": "Android15 · #382",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_15",
+      "itemId": 382,
+      "chance": 15.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 4,
+      "name": "Android19 · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 5,
+      "name": "Android19 · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 18,
+      "chance": 1.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 6,
+      "name": "Android19 · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 19,
+      "chance": 1.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 7,
+      "name": "Android19 · #20",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 20,
+      "chance": 1.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 8,
+      "name": "Android19 · #380",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 380,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 9,
+      "name": "Android19 · #381",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 381,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 10,
+      "name": "Android19 · #382",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 382,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 11,
+      "name": "Android19 · #383",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 383,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 12,
+      "name": "Android19 · #384",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 384,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 13,
+      "name": "Android19 · #385",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ANDROID_19",
+      "itemId": 385,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 14,
+      "name": "DrKore · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 15,
+      "name": "DrKore · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 18,
+      "chance": 1.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 16,
+      "name": "DrKore · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 19,
+      "chance": 1.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 17,
+      "name": "DrKore · #20",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 20,
+      "chance": 1.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 18,
+      "name": "DrKore · #380",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 380,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 19,
+      "name": "DrKore · #381",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 381,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 20,
+      "name": "DrKore · #382",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 382,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 21,
+      "name": "DrKore · #383",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 383,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 22,
+      "name": "DrKore · #384",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 384,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 23,
+      "name": "DrKore · #385",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DR_KORE",
+      "itemId": 385,
+      "chance": 0.83,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 24,
+      "name": "KingKong · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KING_KONG",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 25,
+      "name": "KingKong · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KING_KONG",
+      "itemId": 17,
+      "chance": 30.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 26,
+      "name": "KingKong · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KING_KONG",
+      "itemId": 19,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 27,
+      "name": "KingKong · #20",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KING_KONG",
+      "itemId": 20,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 28,
+      "name": "Pic · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "PIC",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 29,
+      "name": "Pic · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "PIC",
+      "itemId": 17,
+      "chance": 30.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 30,
+      "name": "Pic · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "PIC",
+      "itemId": 19,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 31,
+      "name": "Pic · #20",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "PIC",
+      "itemId": 20,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 32,
+      "name": "Poc · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "POC",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 33,
+      "name": "Poc · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "POC",
+      "itemId": 17,
+      "chance": 30.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 34,
+      "name": "Poc · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "POC",
+      "itemId": 19,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 35,
+      "name": "Poc · #20",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "POC",
+      "itemId": 20,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 36,
+      "name": "BlackGoku · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SUPER_BLACK_GOKU",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 37,
+      "name": "BlackGoku · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SUPER_BLACK_GOKU",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 38,
+      "name": "BlackGoku · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SUPER_BLACK_GOKU",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 39,
+      "name": "BlackGoku · #1363",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SUPER_BLACK_GOKU",
+      "itemId": 1363,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 40,
+      "name": "BlackGoku · #1495",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SUPER_BLACK_GOKU",
+      "itemId": 1495,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 41,
+      "name": "RongNhi1Sao · #1427",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RONG_1_SAO",
+      "itemId": 1427,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 3,
+      "options": [
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "RongNhi2Sao · #1427",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RONG_2_SAO",
+      "itemId": 1427,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 3,
+      "options": [
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "name": "RongNhi3Sao · #1427",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RONG_3_SAO",
+      "itemId": 1427,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 3,
+      "options": [
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "name": "RongNhi4Sao · #1427",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RONG_4_SAO",
+      "itemId": 1427,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 3,
+      "options": [
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "RongNhi5Sao · #1427",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RONG_5_SAO",
+      "itemId": 1427,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 3,
+      "options": [
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "name": "RongNhi6Sao · #1427",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RONG_6_SAO",
+      "itemId": 1427,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 3,
+      "options": [
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "name": "RongNhi7Sao · #1427",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RONG_7_SAO",
+      "itemId": 1427,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 3,
+      "options": [
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "name": "SieuBoHung · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SIEU_BO_HUNG_2",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 49,
+      "name": "SieuBoHung · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SIEU_BO_HUNG_2",
+      "itemId": 16,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 50,
+      "name": "SieuBoHung · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SIEU_BO_HUNG_2",
+      "itemId": 17,
+      "chance": 8.75,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 51,
+      "name": "SieuBoHung · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SIEU_BO_HUNG_2",
+      "itemId": 18,
+      "chance": 8.75,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 52,
+      "name": "SieuBoHung · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SIEU_BO_HUNG_2",
+      "itemId": 19,
+      "chance": 8.75,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 53,
+      "name": "SieuBoHung · #20",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SIEU_BO_HUNG_2",
+      "itemId": 20,
+      "chance": 8.75,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 54,
+      "name": "SieuBoHung · #821",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SIEU_BO_HUNG_2",
+      "itemId": 821,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 55,
+      "name": "XenBoHung · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "XEN_BO_HUNG_3",
+      "itemId": 16,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 56,
+      "name": "XenBoHung · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "XEN_BO_HUNG_3",
+      "itemId": 17,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 57,
+      "name": "XenBoHung · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "XEN_BO_HUNG_3",
+      "itemId": 18,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 58,
+      "name": "XenBoHung · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "XEN_BO_HUNG_3",
+      "itemId": 19,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 59,
+      "name": "XenBoHung · #20",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "XEN_BO_HUNG_3",
+      "itemId": 20,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 60,
+      "name": "BrolySSJ3 · #1214",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BROLYSSJ3",
+      "itemId": 1214,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 50,
+          "param": 25
+        },
+        {
+          "id": 77,
+          "param": 25
+        },
+        {
+          "id": 103,
+          "param": 25
+        },
+        {
+          "id": 47,
+          "param": 200
+        },
+        {
+          "id": 101,
+          "param": 22
+        },
+        {
+          "id": 5,
+          "param": 12
+        },
+        {
+          "id": 108,
+          "param": 10
+        },
+        {
+          "id": 93,
+          "param": 4
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "name": "CoolerVang · #878",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "COLLER_VANG",
+      "itemId": 878,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 62,
+      "name": "CoolerVang · #1206",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "COLLER_VANG",
+      "itemId": 1206,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 63,
+      "name": "SuperXaydaGod · #1213",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SUPERXAYDAGOD",
+      "itemId": 1213,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 77,
+          "param": 25
+        },
+        {
+          "id": 103,
+          "param": 25
+        },
+        {
+          "id": 50,
+          "param": 25
+        },
+        {
+          "id": 47,
+          "param": 200
+        },
+        {
+          "id": 101,
+          "param": 22
+        },
+        {
+          "id": 5,
+          "param": 12
+        },
+        {
+          "id": 148,
+          "param": 50
+        },
+        {
+          "id": 93,
+          "param": 4
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Chiller · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CHILLER_2",
+      "itemId": 16,
+      "chance": 15.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 65,
+      "name": "Cooler · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "COOLER_2",
+      "itemId": 16,
+      "chance": 15.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 66,
+      "name": "Frost · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "FROST_3",
+      "itemId": 16,
+      "chance": 15.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 67,
+      "name": "Fide · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "FIDE_DAI_CA_3",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 68,
+      "name": "Fide · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "FIDE_DAI_CA_3",
+      "itemId": 17,
+      "chance": 6.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 69,
+      "name": "Fide · #1099",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "FIDE_DAI_CA_3",
+      "itemId": 1099,
+      "chance": 6.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 70,
+      "name": "Fide · #1100",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "FIDE_DAI_CA_3",
+      "itemId": 1100,
+      "chance": 6.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 71,
+      "name": "Fide · #1101",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "FIDE_DAI_CA_3",
+      "itemId": 1101,
+      "chance": 6.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 72,
+      "name": "Fide · #1102",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "FIDE_DAI_CA_3",
+      "itemId": 1102,
+      "chance": 6.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 73,
+      "name": "SO1 · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_1",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 74,
+      "name": "SO1 · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_1",
+      "itemId": 17,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 75,
+      "name": "SO1 · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_1",
+      "itemId": 18,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 76,
+      "name": "SO1 · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_1",
+      "itemId": 19,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 77,
+      "name": "SO2 · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_2",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 78,
+      "name": "SO2 · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_2",
+      "itemId": 17,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 79,
+      "name": "SO2 · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_2",
+      "itemId": 18,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 80,
+      "name": "SO2 · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_2",
+      "itemId": 19,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 81,
+      "name": "SO3 · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_3",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 82,
+      "name": "SO3 · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_3",
+      "itemId": 17,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 83,
+      "name": "SO3 · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_3",
+      "itemId": 18,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 84,
+      "name": "SO3 · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_3",
+      "itemId": 19,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 85,
+      "name": "SO4 · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_4",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 86,
+      "name": "SO4 · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_4",
+      "itemId": 17,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 87,
+      "name": "SO4 · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_4",
+      "itemId": 18,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 88,
+      "name": "SO4 · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SO_4",
+      "itemId": 19,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 89,
+      "name": "TDT · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "TIEU_DOI_TRUONG",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 90,
+      "name": "TDT · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "TIEU_DOI_TRUONG",
+      "itemId": 17,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 91,
+      "name": "TDT · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "TIEU_DOI_TRUONG",
+      "itemId": 18,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 92,
+      "name": "TDT · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "TIEU_DOI_TRUONG",
+      "itemId": 19,
+      "chance": 16.67,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 93,
+      "name": "GoldenFrieza · #629",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "GOLDEN_FRIEZA",
+      "itemId": 629,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 50,
+          "param": 30
+        },
+        {
+          "id": 77,
+          "param": 30
+        },
+        {
+          "id": 103,
+          "param": 30
+        },
+        {
+          "id": 93,
+          "param": 4
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "name": "BiMa · #701",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 701,
+      "chance": 100.0,
+      "minQuantity": 3,
+      "maxQuantity": 5,
+      "options": []
+    },
+    {
+      "id": 95,
+      "name": "BiMa · #702",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 702,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 96,
+      "name": "BiMa · #703",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 703,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 97,
+      "name": "BiMa · #704",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 704,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 98,
+      "name": "BiMa · #705",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 705,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 99,
+      "name": "BiMa · #706",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 706,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 100,
+      "name": "BiMa · #707",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 707,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 101,
+      "name": "BiMa · #708",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 708,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 102,
+      "name": "BiMa · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 457,
+      "chance": 80.0,
+      "minQuantity": 3,
+      "maxQuantity": 5,
+      "options": []
+    },
+    {
+      "id": 103,
+      "name": "BiMa · #739",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BI_MA",
+      "itemId": 739,
+      "chance": 15.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 104,
+      "name": "Doi · #701",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 701,
+      "chance": 100.0,
+      "minQuantity": 2,
+      "maxQuantity": 4,
+      "options": []
+    },
+    {
+      "id": 105,
+      "name": "Doi · #702",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 702,
+      "chance": 7.1429,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 106,
+      "name": "Doi · #703",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 703,
+      "chance": 7.1429,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 107,
+      "name": "Doi · #704",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 704,
+      "chance": 7.1429,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 108,
+      "name": "Doi · #705",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 705,
+      "chance": 7.1429,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 109,
+      "name": "Doi · #706",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 706,
+      "chance": 7.1429,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 110,
+      "name": "Doi · #707",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 707,
+      "chance": 7.1429,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 111,
+      "name": "Doi · #708",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 708,
+      "chance": 7.1429,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 112,
+      "name": "Doi · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 457,
+      "chance": 60.0,
+      "minQuantity": 3,
+      "maxQuantity": 5,
+      "options": []
+    },
+    {
+      "id": 113,
+      "name": "Doi · #643",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "DOI_MA_CA_RONG",
+      "itemId": 643,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 114,
+      "name": "Janemba · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "JANEMBA_DIA_NGUC",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 115,
+      "name": "Janemba · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "JANEMBA_DIA_NGUC",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 116,
+      "name": "Janemba · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "JANEMBA_DIA_NGUC",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 117,
+      "name": "Janemba · #1363",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "JANEMBA_DIA_NGUC",
+      "itemId": 1363,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 118,
+      "name": "Janemba · #1495",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "JANEMBA_DIA_NGUC",
+      "itemId": 1495,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 119,
+      "name": "MaTroi · #701",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 701,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 3,
+      "options": []
+    },
+    {
+      "id": 120,
+      "name": "MaTroi · #702",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 702,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 121,
+      "name": "MaTroi · #703",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 703,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 122,
+      "name": "MaTroi · #704",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 704,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 123,
+      "name": "MaTroi · #705",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 705,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 124,
+      "name": "MaTroi · #706",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 706,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 125,
+      "name": "MaTroi · #707",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 707,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 126,
+      "name": "MaTroi · #708",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 708,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 127,
+      "name": "MaTroi · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 457,
+      "chance": 50.0,
+      "minQuantity": 3,
+      "maxQuantity": 5,
+      "options": []
+    },
+    {
+      "id": 128,
+      "name": "MaTroi · #642",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MA_TROI",
+      "itemId": 642,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 129,
+      "name": "Hit · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HIT",
+      "itemId": 16,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 130,
+      "name": "Hit · #1451",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HIT",
+      "itemId": 1451,
+      "chance": 25.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 131,
+      "name": "Hit · #1099",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HIT",
+      "itemId": 1099,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 132,
+      "name": "Hit · #1100",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HIT",
+      "itemId": 1100,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 133,
+      "name": "Hit · #1101",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HIT",
+      "itemId": 1101,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 134,
+      "name": "Hit · #1102",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HIT",
+      "itemId": 1102,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 135,
+      "name": "Hit · #1103",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HIT",
+      "itemId": 1103,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 136,
+      "name": "SonTinh · #1431",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SON_TINH",
+      "itemId": 1431,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 50,
+          "param": 22
+        },
+        {
+          "id": 94,
+          "param": 15
+        },
+        {
+          "id": 77,
+          "param": 27
+        },
+        {
+          "id": 83,
+          "param": 0
+        },
+        {
+          "id": 108,
+          "param": 12
+        },
+        {
+          "id": 154,
+          "param": 0
+        },
+        {
+          "id": 93,
+          "param": 8
+        },
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 137,
+      "name": "SonTinh · #1413",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SON_TINH",
+      "itemId": 1413,
+      "chance": 95.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 77,
+          "param": 17
+        },
+        {
+          "id": 108,
+          "param": 10
+        },
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 138,
+      "name": "SonTinh · #1381",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SON_TINH",
+      "itemId": 1381,
+      "chance": 8.33,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 139,
+      "name": "SonTinh · #1382",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SON_TINH",
+      "itemId": 1382,
+      "chance": 8.33,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 140,
+      "name": "SonTinh · #1383",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "SON_TINH",
+      "itemId": 1383,
+      "chance": 8.33,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 141,
+      "name": "ThuyTinh · #1432",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "THUY_TINH",
+      "itemId": 1432,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 50,
+          "param": 22
+        },
+        {
+          "id": 94,
+          "param": 15
+        },
+        {
+          "id": 77,
+          "param": 27
+        },
+        {
+          "id": 83,
+          "param": 0
+        },
+        {
+          "id": 108,
+          "param": 12
+        },
+        {
+          "id": 154,
+          "param": 0
+        },
+        {
+          "id": 93,
+          "param": 8
+        },
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 142,
+      "name": "ThuyTinh · #1414",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "THUY_TINH",
+      "itemId": 1414,
+      "chance": 95.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 77,
+          "param": 17
+        },
+        {
+          "id": 108,
+          "param": 10
+        },
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 143,
+      "name": "ThuyTinh · #1381",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "THUY_TINH",
+      "itemId": 1381,
+      "chance": 8.33,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 144,
+      "name": "ThuyTinh · #1382",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "THUY_TINH",
+      "itemId": 1382,
+      "chance": 8.33,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 145,
+      "name": "ThuyTinh · #1383",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "THUY_TINH",
+      "itemId": 1383,
+      "chance": 8.33,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 146,
+      "name": "Kuku · #748",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KUKU",
+      "itemId": 748,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 147,
+      "name": "Kuku · #749",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KUKU",
+      "itemId": 749,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 148,
+      "name": "Kuku · #750",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KUKU",
+      "itemId": 750,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 149,
+      "name": "Kuku · #751",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KUKU",
+      "itemId": 751,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 150,
+      "name": "MapDauDinh · #748",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MAP_DAU_DINH",
+      "itemId": 748,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 151,
+      "name": "MapDauDinh · #749",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MAP_DAU_DINH",
+      "itemId": 749,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 152,
+      "name": "MapDauDinh · #750",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MAP_DAU_DINH",
+      "itemId": 750,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 153,
+      "name": "MapDauDinh · #751",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MAP_DAU_DINH",
+      "itemId": 751,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 154,
+      "name": "Rambo · #748",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RAMBO",
+      "itemId": 748,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 155,
+      "name": "Rambo · #749",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RAMBO",
+      "itemId": 749,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 156,
+      "name": "Rambo · #750",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RAMBO",
+      "itemId": 750,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 157,
+      "name": "Rambo · #751",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RAMBO",
+      "itemId": 751,
+      "chance": 7.5,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 158,
+      "name": "Kochiro · #1527",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KOCHIRO",
+      "itemId": 1527,
+      "chance": 90.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 77,
+          "param": 38
+        },
+        {
+          "id": 103,
+          "param": 38
+        },
+        {
+          "id": 108,
+          "param": 15
+        },
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 1
+        }
+      ]
+    },
+    {
+      "id": 159,
+      "name": "Kochiro · #1530",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KOCHIRO",
+      "itemId": 1530,
+      "chance": 3.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 174,
+          "param": 2025
+        },
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 1
+        }
+      ]
+    },
+    {
+      "id": 160,
+      "name": "Kochiro · #1099",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KOCHIRO",
+      "itemId": 1099,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 161,
+      "name": "Kochiro · #1100",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KOCHIRO",
+      "itemId": 1100,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 162,
+      "name": "Kochiro · #1101",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KOCHIRO",
+      "itemId": 1101,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 163,
+      "name": "Kochiro · #1102",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KOCHIRO",
+      "itemId": 1102,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 164,
+      "name": "Kochiro · #1103",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "KOCHIRO",
+      "itemId": 1103,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 165,
+      "name": "Meowth · #1531",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MEOWTH",
+      "itemId": 1531,
+      "chance": 30.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 174,
+          "param": 2025
+        },
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 1
+        }
+      ]
+    },
+    {
+      "id": 166,
+      "name": "Meowth · #1529",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MEOWTH",
+      "itemId": 1529,
+      "chance": 63.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 1
+        }
+      ]
+    },
+    {
+      "id": 167,
+      "name": "Meowth · #1099",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MEOWTH",
+      "itemId": 1099,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 168,
+      "name": "Meowth · #1100",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MEOWTH",
+      "itemId": 1100,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 169,
+      "name": "Meowth · #1101",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MEOWTH",
+      "itemId": 1101,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 170,
+      "name": "Meowth · #1102",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MEOWTH",
+      "itemId": 1102,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 171,
+      "name": "Meowth · #1103",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MEOWTH",
+      "itemId": 1103,
+      "chance": 1.4,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 172,
+      "name": "Musashi · #1528",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MUSASHI",
+      "itemId": 1528,
+      "chance": 30.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 50,
+          "param": 30
+        },
+        {
+          "id": 14,
+          "param": 13
+        },
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 173,
+      "name": "Musashi · #1530",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MUSASHI",
+      "itemId": 1530,
+      "chance": 21.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 174,
+          "param": 2025
+        },
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 1
+        }
+      ]
+    },
+    {
+      "id": 174,
+      "name": "Musashi · #1099",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MUSASHI",
+      "itemId": 1099,
+      "chance": 9.8,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 175,
+      "name": "Musashi · #1100",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MUSASHI",
+      "itemId": 1100,
+      "chance": 9.8,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 176,
+      "name": "Musashi · #1101",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MUSASHI",
+      "itemId": 1101,
+      "chance": 9.8,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 177,
+      "name": "Musashi · #1102",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MUSASHI",
+      "itemId": 1102,
+      "chance": 9.8,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 178,
+      "name": "Musashi · #1103",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MUSASHI",
+      "itemId": 1103,
+      "chance": 9.8,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 179,
+      "name": "BlackFrieza · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BLACK_FRIEZA",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 180,
+      "name": "BlackFrieza · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BLACK_FRIEZA",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 181,
+      "name": "BlackFrieza · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BLACK_FRIEZA",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 182,
+      "name": "BlackFrieza · #1363",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BLACK_FRIEZA",
+      "itemId": 1363,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 183,
+      "name": "BlackFrieza · #1495",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BLACK_FRIEZA",
+      "itemId": 1495,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 184,
+      "name": "BrolySuper · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BROLY_SUPER",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 185,
+      "name": "BrolySuper · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BROLY_SUPER",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 186,
+      "name": "BrolySuper · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BROLY_SUPER",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 187,
+      "name": "BrolySuper · #1363",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BROLY_SUPER",
+      "itemId": 1363,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 188,
+      "name": "BrolySuper · #1495",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BROLY_SUPER",
+      "itemId": 1495,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 189,
+      "name": "CellMax · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CELL_MAX",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 190,
+      "name": "CellMax · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CELL_MAX",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 191,
+      "name": "CellMax · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CELL_MAX",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 192,
+      "name": "CellMax · #1363",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CELL_MAX",
+      "itemId": 1363,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 193,
+      "name": "CellMax · #1495",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CELL_MAX",
+      "itemId": 1495,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 194,
+      "name": "GohanBeast · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "GOHAN_BEAST",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 195,
+      "name": "GohanBeast · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "GOHAN_BEAST",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 196,
+      "name": "GohanBeast · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "GOHAN_BEAST",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 197,
+      "name": "GohanBeast · #1363",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "GOHAN_BEAST",
+      "itemId": 1363,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 198,
+      "name": "GohanBeast · #1495",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "GOHAN_BEAST",
+      "itemId": 1495,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 199,
+      "name": "Moro · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MORO",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 200,
+      "name": "Moro · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MORO",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 201,
+      "name": "Moro · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MORO",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 202,
+      "name": "Moro · #1363",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MORO",
+      "itemId": 1363,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 203,
+      "name": "Moro · #1495",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "MORO",
+      "itemId": 1495,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 204,
+      "name": "Gogeta · #1432",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "GOGETA",
+      "itemId": 1432,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 50,
+          "param": 27
+        },
+        {
+          "id": 10,
+          "param": 15
+        },
+        {
+          "id": 77,
+          "param": 22
+        },
+        {
+          "id": 103,
+          "param": 22
+        },
+        {
+          "id": 83,
+          "param": 0
+        },
+        {
+          "id": 14,
+          "param": 10
+        },
+        {
+          "id": 93,
+          "param": 8
+        }
+      ]
+    },
+    {
+      "id": 205,
+      "name": "Gogeta · #1414",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "GOGETA",
+      "itemId": 1414,
+      "chance": 95.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 50,
+          "param": 17
+        },
+        {
+          "id": 14,
+          "param": 11
+        },
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 206,
+      "name": "NguyetThan · #2123",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "NGUYETTHAN",
+      "itemId": 2123,
+      "chance": 100.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 77,
+          "param": 35
+        },
+        {
+          "id": 103,
+          "param": 35
+        },
+        {
+          "id": 50,
+          "param": 35
+        },
+        {
+          "id": 94,
+          "param": 35
+        },
+        {
+          "id": 14,
+          "param": 21
+        },
+        {
+          "id": 108,
+          "param": 21
+        },
+        {
+          "id": 154,
+          "param": 0
+        },
+        {
+          "id": 93,
+          "param": 8
+        }
+      ]
+    },
+    {
+      "id": 208,
+      "name": "Rong1SAO · #1431",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RONGSAO",
+      "itemId": 1431,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 50,
+          "param": 22
+        },
+        {
+          "id": 94,
+          "param": 15
+        },
+        {
+          "id": 77,
+          "param": 27
+        },
+        {
+          "id": 83,
+          "param": 0
+        },
+        {
+          "id": 108,
+          "param": 12
+        },
+        {
+          "id": 154,
+          "param": 0
+        },
+        {
+          "id": 93,
+          "param": 8
+        },
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 209,
+      "name": "Rong1SAO · #1413",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "RONGSAO",
+      "itemId": 1413,
+      "chance": 95.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 77,
+          "param": 17
+        },
+        {
+          "id": 108,
+          "param": 10
+        },
+        {
+          "id": 93,
+          "param": 3
+        },
+        {
+          "id": 30,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 210,
+      "name": "HauVe1 · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HAU_VE_1",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 50000,
+      "maxQuantity": 99999,
+      "options": []
+    },
+    {
+      "id": 211,
+      "name": "HauVe1 · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HAU_VE_1",
+      "itemId": 16,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 212,
+      "name": "HauVe2 · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HAU_VE_2",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 50000,
+      "maxQuantity": 99999,
+      "options": []
+    },
+    {
+      "id": 213,
+      "name": "HauVe2 · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "HAU_VE_2",
+      "itemId": 16,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 214,
+      "name": "Zeno · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ZENO",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 50000,
+      "maxQuantity": 99999,
+      "options": []
+    },
+    {
+      "id": 215,
+      "name": "Zeno · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "ZENO",
+      "itemId": 16,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 216,
+      "name": "Cumber · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CUMBER_2",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 217,
+      "name": "Cumber · #1551",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CUMBER_2",
+      "itemId": 1551,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 218,
+      "name": "Cumber · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CUMBER_2",
+      "itemId": 457,
+      "chance": 15.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 219,
+      "name": "Cumber · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CUMBER_2",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 220,
+      "name": "berus · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BERUS",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 221,
+      "name": "berus · #1475",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BERUS",
+      "itemId": 1475,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 222,
+      "name": "berus · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BERUS",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 223,
+      "name": "berus · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "BERUS",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 224,
+      "name": "champa · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CHAMPA",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 225,
+      "name": "champa · #1475",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CHAMPA",
+      "itemId": 1475,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 226,
+      "name": "champa · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CHAMPA",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 227,
+      "name": "champa · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "CHAMPA",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 228,
+      "name": "vados · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VADOS",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 229,
+      "name": "vados · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VADOS",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 230,
+      "name": "vados · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VADOS",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 231,
+      "name": "whis · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "WHIS_1",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 20000,
+      "maxQuantity": 30000,
+      "options": []
+    },
+    {
+      "id": 232,
+      "name": "whis · #457",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "WHIS_1",
+      "itemId": 457,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 233,
+      "name": "whis · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "WHIS_1",
+      "itemId": 16,
+      "chance": 5.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 234,
+      "name": "Pocolo · #1458",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "POCOLONE",
+      "itemId": 1458,
+      "chance": 30.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 50,
+          "param": 40
+        },
+        {
+          "id": 77,
+          "param": 40
+        },
+        {
+          "id": 103,
+          "param": 40
+        },
+        {
+          "id": 5,
+          "param": 30
+        },
+        {
+          "id": 93,
+          "param": 2
+        }
+      ]
+    },
+    {
+      "id": 235,
+      "name": "Pocolo · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "POCOLONE",
+      "itemId": 16,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 236,
+      "name": "Pocolo · #17",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "POCOLONE",
+      "itemId": 17,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 237,
+      "name": "VDBill · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_BILL",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 80000,
+      "maxQuantity": 99999,
+      "options": []
+    },
+    {
+      "id": 238,
+      "name": "VDBill · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_BILL",
+      "itemId": 16,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 239,
+      "name": "VDChampa · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_CHAMPA",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 50000,
+      "maxQuantity": 99999,
+      "options": []
+    },
+    {
+      "id": 240,
+      "name": "VDChampa · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_CHAMPA",
+      "itemId": 16,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 241,
+      "name": "VDDaiThienSu · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_DAI_THIEN_SU",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 99999,
+      "maxQuantity": 99999,
+      "options": []
+    },
+    {
+      "id": 242,
+      "name": "VDDaiThienSu · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_DAI_THIEN_SU",
+      "itemId": 16,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 243,
+      "name": "VDDaiThienSu · #18",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_DAI_THIEN_SU",
+      "itemId": 18,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 244,
+      "name": "VDDaiThienSu · #19",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_DAI_THIEN_SU",
+      "itemId": 19,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 245,
+      "name": "VDVados · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_VADOS",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 50000,
+      "maxQuantity": 99999,
+      "options": []
+    },
+    {
+      "id": 246,
+      "name": "VDVados · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_VADOS",
+      "itemId": 16,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 247,
+      "name": "VDWhis · #190",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_WHIS",
+      "itemId": 190,
+      "chance": 100.0,
+      "minQuantity": 80000,
+      "maxQuantity": 99999,
+      "options": []
+    },
+    {
+      "id": 248,
+      "name": "VDWhis · #16",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "VD_WHIS",
+      "itemId": 16,
+      "chance": 20.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 249,
+      "name": "ubu · #1520",
+      "enabled": true,
+      "mapId": -1,
+      "bossKey": "UBU",
+      "itemId": 1520,
+      "chance": 100.0,
+      "minQuantity": 5,
+      "maxQuantity": 5,
+      "options": []
+    }
+  ]
+}

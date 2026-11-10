@@ -1,0 +1,13 @@
+{
+  "version": "v1.0.0-ubuntu",
+  "url": "https://github.com/AnhhPhuong06/SRC_DRAGONBALL/releases/download/v1.0.0-ubuntu/runtime-assets.zip",
+  "sha256": "7ac72f69df382cee42068bfbc140fbcd3a0cb91394947156ff4bf4371e98c65a",
+  "files": 84398,
+  "bytes": 778002260,
+  "required_files": [
+    "data/update_data/arrow",
+    "data/update_data/dart",
+    "data/update_data/part",
+    "data/map/tile_set_info"
+  ]
+}

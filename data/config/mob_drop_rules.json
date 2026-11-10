@@ -1,0 +1,515 @@
+{
+  "version": 1,
+  "revision": 1,
+  "nextId": 35,
+  "rules": [
+    {
+      "id": 1,
+      "name": "Thỏi vàng · Cold map 105",
+      "enabled": true,
+      "mapId": 105,
+      "mobId": -1,
+      "itemId": 457,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 2,
+      "name": "Thỏi vàng · Cold map 106",
+      "enabled": true,
+      "mapId": 106,
+      "mobId": -1,
+      "itemId": 457,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 3,
+      "name": "Thỏi vàng · Cold map 107",
+      "enabled": true,
+      "mapId": 107,
+      "mobId": -1,
+      "itemId": 457,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 4,
+      "name": "Thỏi vàng · Cold map 108",
+      "enabled": true,
+      "mapId": 108,
+      "mobId": -1,
+      "itemId": 457,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 5,
+      "name": "Thỏi vàng · Cold map 109",
+      "enabled": true,
+      "mapId": 109,
+      "mobId": -1,
+      "itemId": 457,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 6,
+      "name": "Thỏi vàng · Cold map 110",
+      "enabled": true,
+      "mapId": 110,
+      "mobId": -1,
+      "itemId": 457,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 7,
+      "name": "Sao pha lê #441",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 441,
+      "chance": 0.0714,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 95,
+          "param": 5
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Sao pha lê #442",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 442,
+      "chance": 0.0714,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 96,
+          "param": 5
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Sao pha lê #443",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 443,
+      "chance": 0.0714,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 97,
+          "param": 5
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Sao pha lê #444",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 444,
+      "chance": 0.0714,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 98,
+          "param": 3
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Sao pha lê #445",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 445,
+      "chance": 0.0714,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 99,
+          "param": 3
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Sao pha lê #446",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 446,
+      "chance": 0.0714,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 100,
+          "param": 5
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Sao pha lê #447",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 447,
+      "chance": 0.0714,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 101,
+          "param": 5
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Đá nâng cấp #220",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 220,
+      "chance": 0.1,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 71,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Đá nâng cấp #221",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 221,
+      "chance": 0.1,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 70,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Đá nâng cấp #222",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 222,
+      "chance": 0.1,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 69,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Đá nâng cấp #223",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 223,
+      "chance": 0.1,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 68,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Đá nâng cấp #224",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 224,
+      "chance": 0.1,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 67,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Mảnh sắt vụn",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 225,
+      "chance": 1.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 20,
+      "name": "Ngọc Rồng 6 sao",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 19,
+      "chance": 0.1,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 21,
+      "name": "Ngọc Rồng 7 sao",
+      "enabled": true,
+      "mapId": -1,
+      "mobId": -1,
+      "itemId": 20,
+      "chance": 0.1,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 22,
+      "name": "Capsule bang · map 156",
+      "enabled": true,
+      "mapId": 156,
+      "mobId": -1,
+      "itemId": 1342,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 23,
+      "name": "Capsule bang · map 157",
+      "enabled": true,
+      "mapId": 157,
+      "mobId": -1,
+      "itemId": 1342,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 24,
+      "name": "Capsule bang · map 158",
+      "enabled": true,
+      "mapId": 158,
+      "mobId": -1,
+      "itemId": 1342,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 25,
+      "name": "Capsule bang · map 159",
+      "enabled": true,
+      "mapId": 159,
+      "mobId": -1,
+      "itemId": 1342,
+      "chance": 10.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    },
+    {
+      "id": 26,
+      "name": "Mảnh vỡ bông tai · map 156",
+      "enabled": true,
+      "mapId": 156,
+      "mobId": -1,
+      "itemId": 933,
+      "chance": 2.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 31,
+          "param": 12
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Mảnh vỡ bông tai · map 157",
+      "enabled": true,
+      "mapId": 157,
+      "mobId": -1,
+      "itemId": 933,
+      "chance": 2.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 31,
+          "param": 12
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Mảnh vỡ bông tai 2 · map 156",
+      "enabled": true,
+      "mapId": 156,
+      "mobId": -1,
+      "itemId": 934,
+      "chance": 1.6667,
+      "minQuantity": 1,
+      "maxQuantity": 2,
+      "options": [
+        {
+          "id": 86,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Mảnh vỡ bông tai 2 · map 157",
+      "enabled": true,
+      "mapId": 157,
+      "mobId": -1,
+      "itemId": 934,
+      "chance": 1.6667,
+      "minQuantity": 1,
+      "maxQuantity": 2,
+      "options": [
+        {
+          "id": 86,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Mảnh vỡ bông tai 2 · map 158",
+      "enabled": true,
+      "mapId": 158,
+      "mobId": -1,
+      "itemId": 934,
+      "chance": 1.6667,
+      "minQuantity": 1,
+      "maxQuantity": 2,
+      "options": [
+        {
+          "id": 86,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Mảnh vỡ bông tai 2 · map 159",
+      "enabled": true,
+      "mapId": 159,
+      "mobId": -1,
+      "itemId": 934,
+      "chance": 1.6667,
+      "minQuantity": 1,
+      "maxQuantity": 2,
+      "options": [
+        {
+          "id": 86,
+          "param": 0
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Mảnh vỡ bông tai +3 · map 158",
+      "enabled": true,
+      "mapId": 158,
+      "mobId": -1,
+      "itemId": 1493,
+      "chance": 2.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 31,
+          "param": 3
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Mảnh vỡ bông tai +3 · map 159",
+      "enabled": true,
+      "mapId": 159,
+      "mobId": -1,
+      "itemId": 1493,
+      "chance": 2.0,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": [
+        {
+          "id": 31,
+          "param": 3
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Đá hoàng kim · map 155",
+      "enabled": true,
+      "mapId": 155,
+      "mobId": -1,
+      "itemId": 1560,
+      "chance": 0.2899,
+      "minQuantity": 1,
+      "maxQuantity": 1,
+      "options": []
+    }
+  ]
+}

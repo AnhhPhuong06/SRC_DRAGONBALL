@@ -1,0 +1,3016 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Quản Trị Hệ Thống</title>
+    <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+
+<!-- ===================== MÀN HÌNH ĐĂNG NHẬP ===================== -->
+<!-- Hiện sẵn khi tải trang; js/panel.js sẽ tự ẩn đi sau khi xác nhận phiên quản trị -->
+<div class="login" id="loginScreen">
+    <form class="login__card" id="loginForm">
+        <div class="login__brand">
+            <h1>QUẢN TRỊ HỆ THỐNG</h1>
+            <span class="login__brand-sub">Java WebAdminServer</span>
+            <p class="field__hint">Tài khoản quản trị cấu hình tại <code>data/config/web_admin.properties</code>, không dùng tài khoản game.</p>
+        </div>
+
+        <div class="field">
+            <label for="loginUser">Tài khoản</label>
+            <input type="text" id="loginUser" name="username" autocomplete="username"
+                   placeholder="username" spellcheck="false" autofocus>
+        </div>
+
+        <div class="field">
+            <label for="loginPass">Mật khẩu</label>
+            <input type="password" id="loginPass" name="password" autocomplete="current-password"
+                   placeholder="••••••">
+        </div>
+
+        <p class="login__error" id="loginError" hidden></p>
+
+        <label class="check login__remember">
+            <input type="checkbox" id="loginRemember"> Ghi nhớ đăng nhập
+        </label>
+
+        <button class="btn btn--primary btn--block" type="submit" id="loginSubmit">Đăng Nhập</button>
+    </form>
+</div>
+
+<div class="layout" id="appShell" hidden>
+
+    <!-- ======================= SIDEBAR ======================= -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+            <div class="sidebar__brand-text">
+                <h1>QUẢN TRỊ HỆ THỐNG</h1>
+                <span class="sidebar__brand-sub">XHOPEDEV</span>
+            </div>
+            <span class="sidebar__brand-version" id="brandVersion">v2.4</span>
+            <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Đóng menu">&times;</button>
+        </div>
+
+        <nav class="sidebar__nav" id="sidebarNav">
+            <!-- Sinh tự động từ NAV trong js/panel.js -->
+        </nav>
+
+        <div class="sidebar__footer">
+            <a class="btn btn--ghost btn--block" href="/" target="_blank" rel="noopener">Trang Chủ Game</a>
+            <button class="btn btn--danger btn--block" id="btnLogout" type="button">Đăng Xuất</button>
+        </div>
+    </aside>
+    <button class="sidebar-backdrop" id="sidebarBackdrop" type="button" aria-label="Đóng menu" tabindex="-1" hidden></button>
+
+    <!-- ========================= MAIN ========================= -->
+    <div class="main">
+
+        <!-- ------------------------ TOPBAR ------------------------ -->
+        <header class="topbar">
+            <button class="btn sidebar-toggle" id="sidebarToggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Mở menu điều hướng">&#9776; Menu</button>
+            <nav class="breadcrumb" id="breadcrumb">
+                <span>Hệ Thống</span>
+                <span class="breadcrumb__sep">/</span>
+                <strong>Cài Đặt Website</strong>
+            </nav>
+
+            <div class="topbar__right">
+                <span class="pill pill--user" id="currentUser" hidden></span>
+
+                <span class="pill pill--online" id="serverStatus">
+                    <i class="dot"></i> Chưa xác nhận kết nối API
+                </span>
+
+                <div class="segmented" id="themeSwitch" role="group" aria-label="Chế độ hiển thị">
+                    <button type="button" data-theme-value="light" class="is-active">Sáng</button>
+                    <button type="button" data-theme-value="dark">Tối</button>
+                </div>
+
+                <a class="btn btn--ghost" href="/">Diễn Đàn</a>
+            </div>
+        </header>
+
+        <!-- ------------------------ CONTENT ----------------------- -->
+        <div class="content" id="content">
+
+            <!-- ==================== VIEW: CÀI ĐẶT WEBSITE ==================== -->
+            <section class="view is-active" id="view-website-settings" data-view="website-settings">
+                <div class="view__grid">
+
+                    <!-- ---------- Cột trái: form cấu hình ---------- -->
+                    <div class="card">
+                        <div class="card__head">
+                            <h2 class="card__title">CẤU HÌNH THÔNG TIN WEBSITE &amp; THƯƠNG HIỆU</h2>
+                            <span class="card__hint">Dynamic Config</span>
+                        </div>
+
+                        <form class="card__body" id="settingsForm" autocomplete="off" novalidate>
+
+                            <!-- ---------- LOGO ---------- -->
+                            <div class="group">
+                                <h3 class="group__title">
+                                    <svg class="ic ic--amber" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.8"/><path d="M4 17l5-5 4 4 3-3 4 4"/></svg>
+                                    LOGO WEBSITE
+                                </h3>
+
+                                <label class="dropzone" id="logoDropzone" for="logoInput">
+                                    <input type="file" id="logoInput" accept=".png,.jpg,.jpeg,.gif,.webp,.svg,.ico,image/*" hidden>
+                                    <span class="dropzone__thumb" id="logoThumb">
+                                        <svg viewBox="0 0 24 24" class="dropzone__thumb-icon"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.8"/><path d="M4 17l5-5 4 4 3-3 4 4"/></svg>
+                                    </span>
+                                    <span class="dropzone__body">
+                                        <strong>Click hoặc kéo thả ảnh vào đây</strong>
+                                        <small>Hỗ trợ: PNG, JPG, GIF, WEBP, SVG, ICO</small>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <!-- ---------- THÔNG TIN WEBSITE ---------- -->
+                            <div class="group">
+                                <h3 class="group__title">
+                                    <svg class="ic ic--blue" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg>
+                                    THÔNG TIN WEBSITE &amp; THƯƠNG HIỆU
+                                </h3>
+
+                                <div class="grid grid--2">
+                                    <div class="field">
+                                        <label for="appName">TÊN ỨNG DỤNG (APP_NAME)</label>
+                                        <input type="text" id="appName" name="appName" data-preview="appName" placeholder="Ngọc Rồng">
+                                    </div>
+                                    <div class="field">
+                                        <label for="fname">TÊN THƯƠNG HIỆU HIỂN THỊ (FNAME)</label>
+                                        <input type="text" id="fname" name="fname" data-preview="fname" placeholder="Ngọc Rồng">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid--2">
+                                    <div class="field">
+                                        <label for="ftitle">TIÊU ĐỀ TRANG / SEO TITLE (FTITLE)</label>
+                                        <input type="text" id="ftitle" name="ftitle" placeholder="Ngọc Rồng">
+                                    </div>
+                                    <div class="field">
+                                        <label for="domain">
+                                            TÊN MIỀN WEBSITE (DOMAIN)
+                                            <span class="tag tag--warn" title="Tên miền phải khớp với tên miền thật sau khi deploy">⚠ ĐỔI KHI DEPLOY</span>
+                                        </label>
+                                        <input type="text" id="domain" name="domain" data-preview="domain" placeholder="https://ten-mien-cua-ban.com">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid--3">
+                                    <div class="field">
+                                        <label for="supportEmail">EMAIL HỖ TRỢ (SUPPORT_EMAIL)</label>
+                                        <input type="text" id="supportEmail" name="supportEmail" placeholder="support@example.com">
+                                    </div>
+                                    <div class="field">
+                                        <label for="fgmail">TÀI KHOẢN GMAIL CSKH (FGMAIL)</label>
+                                        <input type="text" id="fgmail" name="fgmail" placeholder="Ví dụ: cskh@gmail.com">
+                                    </div>
+                                    <div class="field">
+                                        <label for="fpgmail">MẬT KHẨU ỨNG DỤNG GMAIL (FPGMAIL)</label>
+                                        <input type="password" id="fpgmail" name="fpgmail" placeholder="Mật khẩu 16 ký tự">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ---------- CỘNG ĐỒNG ---------- -->
+                            <div class="group">
+                                <h3 class="group__title">
+                                    <svg class="ic ic--pink" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg>
+                                    KÊNH CỘNG ĐỒNG &amp; MẠNG XÃ HỘI
+                                </h3>
+
+                                <div class="grid grid--2">
+                                    <div class="field">
+                                        <label for="zalo">NHÓM / BOX ZALO CHÍNH (ZALO)</label>
+                                        <div class="input-group">
+                                            <input type="text" id="zalo" name="zalo" data-preview="zalo" data-kind="url" placeholder="https://zalo.me/g/...">
+                                            <button class="mini-btn mini-btn--solid" type="button" data-open="#zalo" title="Mở nhóm Zalo">
+                                                <svg viewBox="0 0 24 24"><path d="M21 3L10.5 13.5"/><path d="M21 3l-7 18-3.5-7.5L3 10z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="zalo2">NHÓM / BOX ZALO DỰ PHÒNG (ZALO_2)</label>
+                                        <div class="input-group">
+                                            <input type="text" id="zalo2" name="zalo2" data-preview="zalo2" data-kind="url" placeholder="Link box Zalo số 2 nếu có">
+                                            <button class="mini-btn mini-btn--solid" type="button" data-open="#zalo2" title="Mở nhóm Zalo">
+                                                <svg viewBox="0 0 24 24"><path d="M21 3L10.5 13.5"/><path d="M21 3l-7 18-3.5-7.5L3 10z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ---------- ACTION BAR ---------- -->
+                            <div class="form-actions">
+                                <span class="form-actions__status" id="saveStatus">Chưa có thay đổi</span>
+                                <div class="form-actions__buttons">
+                                    <button class="btn btn--ghost" type="button" id="btnReset">Khôi phục mặc định</button>
+                                    <button class="btn btn--primary" type="submit" id="btnSave">Lưu Cấu Hình</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- ---------- Cột phải: preview + ghi chú ---------- -->
+                    <aside class="col-side">
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title">XEM TRƯỚC NHÂN DIỆN &amp; THỬ NGHIỆM NHANH</h2>
+                            </div>
+                            <div class="card__body">
+                                <div class="preview">
+                                    <div class="preview__brand">
+                                        <strong id="previewBrand">Ngọc Rồng</strong>
+                                        <small id="previewDomain">Ngọc Rồng</small>
+                                    </div>
+                                    <ul class="preview__list">
+                                        <li><span>Cộng Đồng Zalo:</span><b data-preview-out="zalo">Chưa Có Link</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3 class="note__title">📌 Lưu Ý Khi Cấu Hình Website:</h3>
+                                <ul class="note__list">
+                                    <li>Thông tin nhận diện và logo được Java panel lưu trên máy chủ; không sửa website bên ngoài.</li>
+                                    <li>Các khoá website, link tải và thanh toán bên dưới hiện chỉ được lưu trữ trong cấu hình panel, chưa có consumer thực thi.</li>
+                                    <li>Mở bằng <code>file://</code> chỉ xem giao diện. Chỉ theme cá nhân được lưu trong trình duyệt; mọi thao tác dữ liệu cần API Java cùng origin.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a class="btn btn--primary btn--block" id="btnVisitHome" href="/" target="_blank" rel="noopener">
+                            🌐 Xem Trực Tiếp Trang Chủ Game
+                        </a>
+                    </aside>
+
+                </div>
+
+                <!-- ---------- Cấu hình Java panel, chỉ lưu trữ ---------- -->
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title">CẤU HÌNH WEBSITE CHO JAVA PANEL — CHỈ LƯU TRỮ</h2>
+                        <span class="card__hint" id="wsFilePath">đang đọc…</span>
+                    </div>
+                    <div class="card__body">
+                        <p class="field__hint table-hint" id="wsHint">
+                            Java panel lưu cấu hình JSON trên máy chủ và sao lưu trước khi ghi.
+                            Chưa có website/thanh toán tiêu thụ các khoá này; không sửa file PHP bên ngoài.
+                        </p>
+
+                        <div id="wsFields"></div>
+
+                        <div class="form-actions">
+                            <span class="form-actions__status" id="wsStatus">Chưa có thay đổi</span>
+                            <div class="form-actions__buttons">
+                                <button class="btn btn--ghost" type="button" id="wsReload">Tải Lại</button>
+                                <button class="btn btn--primary" type="button" id="wsSave">Lưu Cấu Hình Panel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ---------- Sao lưu / phục hồi cấu hình panel ---------- -->
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title">SAO LƯU CẤU HÌNH WEBSITE (JSON)</h2>
+                        <span class="card__hint" id="wsBackupCount">0 bản</span>
+                    </div>
+                    <div class="card__body">
+                        <p class="field__hint table-hint">
+                            Mỗi lần lưu panel sao lưu cấu hình JSON trên máy chủ.
+                            Phục hồi dùng bản đã chọn và sao lưu lại giá trị hiện tại trước khi ghi.
+                            Không ảnh hưởng cấu hình PHP hay website ngoài workspace.
+                        </p>
+                        <div class="table-wrap">
+                            <table class="table table--backup">
+                                <thead>
+                                    <tr>
+                                        <th>Thời Điểm</th>
+                                        <th>Tên File</th>
+                                        <th>Dung Lượng</th>
+                                        <th>Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="wsBackupBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="wsBackupEmpty" hidden>Chưa có bản sao lưu nào</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: DOANH THU & CSDL ==================== -->
+            <section class="view" id="view-revenue" data-view="revenue">
+
+                <!-- ---------- 7 thẻ số liệu ---------- -->
+                <div class="stats stats--6">
+                    <div class="stat stat--rich">
+                        <div class="stat__head">
+                            <span class="stat__label">TỔNG TÀI KHOẢN</span>
+                            <span class="stat__chip">Cơ sở dữ liệu</span>
+                        </div>
+                        <b class="stat__value" id="rvAccounts">0</b>
+                        <span class="stat__sub">Tài khoản đã đăng ký trên hệ thống</span>
+                    </div>
+                    <div class="stat stat--rich">
+                        <div class="stat__head">
+                            <span class="stat__label">ĐĂNG KÝ HÔM NAY</span>
+                            <span class="stat__chip">Tài khoản mới</span>
+                        </div>
+                        <b class="stat__value" id="rvRegisterToday">0</b>
+                        <span class="stat__sub" id="rvRegisterSub">Tài khoản tạo mới trong ngày</span>
+                    </div>
+                    <div class="stat stat--rich">
+                        <div class="stat__head">
+                            <span class="stat__label">DOANH THU HÔM NAY</span>
+                            <span class="stat__chip">Thời gian thực</span>
+                        </div>
+                        <b class="stat__value" id="rvRevenueToday">0 VNĐ</b>
+                        <span class="stat__sub">Giao dịch nạp thành công trong ngày</span>
+                    </div>
+                    <div class="stat stat--rich">
+                        <div class="stat__head">
+                            <span class="stat__label">DOANH THU TUẦN NÀY</span>
+                            <span class="stat__chip" id="rvWeekChip">Thứ 2 - Chủ nhật</span>
+                        </div>
+                        <b class="stat__value" id="rvRevenueWeek">0 VNĐ</b>
+                        <span class="stat__sub">Tổng nạp từ đầu tuần đến hôm nay</span>
+                    </div>
+                    <div class="stat stat--rich">
+                        <div class="stat__head">
+                            <span class="stat__label">TỔNG DOANH THU</span>
+                            <span class="stat__chip">Tích luỹ</span>
+                        </div>
+                        <b class="stat__value" id="rvRevenueTotal">0 VNĐ</b>
+                        <span class="stat__sub" id="rvRevenueTotalSub">Tổng nạp tích luỹ của mọi tài khoản</span>
+                    </div>
+                    <div class="stat stat--rich">
+                        <div class="stat__head">
+                            <span class="stat__label">ĐÃ MỞ KHOÁ (MTV)</span>
+                            <span class="stat__chip">Tài khoản</span>
+                        </div>
+                        <b class="stat__value" id="rvMtv">0</b>
+                        <span class="stat__sub">Người chơi đã mở khoá tính năng</span>
+                    </div>
+                    <div class="stat stat--rich">
+                        <div class="stat__head">
+                            <span class="stat__label">TÀI KHOẢN BỊ KHÓA</span>
+                            <span class="stat__chip">Vi phạm</span>
+                        </div>
+                        <b class="stat__value" id="rvLocked">0</b>
+                        <span class="stat__sub" id="rvLockedSub">Tài khoản đang bị tạm ngưng</span>
+                    </div>
+                    <div class="stat stat--rich">
+                        <div class="stat__head">
+                            <span class="stat__label">TÀI KHOẢN ADMIN</span>
+                            <span class="stat__chip">Quyền hạn</span>
+                        </div>
+                        <b class="stat__value" id="rvAdmins">0</b>
+                        <span class="stat__sub" id="rvAdminsSub">Tài khoản admin</span>
+                    </div>
+                </div>
+
+                <!-- ---------- Biểu đồ doanh thu 7 ngày ---------- -->
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">DOANH THU 7 NGÀY GẦN NHẤT</h2>
+                        <span class="card__hint" id="rvChartHint">—</span>
+                    </div>
+                    <div class="card__body">
+                        <p class="chart-caption">Mỗi cột là doanh thu nạp trong ngày; dòng dưới là số tài khoản đăng ký mới.</p>
+                        <div class="chart" id="rvChart"></div>
+                        <p class="muted" id="rvRechargeNote" hidden></p>
+                    </div>
+                </div>
+
+                <!-- ---------- 4 bảng điều khiển ---------- -->
+                <div class="cards-grid cards-grid--wide">
+
+                    <!-- Lịch sử nạp hôm nay -->
+                    <div class="card">
+                        <div class="card__head">
+                            <h2 class="card__title-lg">LỊCH SỬ NẠP HÔM NAY</h2>
+                            <span class="card__hint" id="rvTopupCount">0 giao dịch</span>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="table table--mini">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tài Khoản</th>
+                                        <th>Nguồn</th>
+                                        <th>Số Tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="rvTopupBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="rvTopupEmpty" hidden>Không có giao dịch nạp hôm nay</div>
+                        </div>
+                    </div>
+
+                    <!-- Cộng / trừ tiền VND -->
+                    <div class="card">
+                        <div class="card__head">
+                            <h2 class="card__title-lg">CỘNG / TRỪ CASH</h2>
+                        </div>
+                        <div class="card__body">
+                            <div class="field">
+                                <label for="rvMoneyUser">TÀI KHOẢN NGƯỜI CHƠI</label>
+                                <input type="text" id="rvMoneyUser" placeholder="Nhập username..." autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label for="rvMoneyAmount">SỐ CASH (số dư trong game)</label>
+                                <input type="number" id="rvMoneyAmount" min="1" placeholder="Ví dụ: 50000">
+                            </div>
+                            <div class="task-grid">
+                                <button class="btn btn--dark" type="button" data-money="add">Cộng Cash</button>
+                                <button class="btn btn--dark" type="button" data-money="sub">Trừ Cash</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quản lý trạng thái tài khoản -->
+                    <div class="card">
+                        <div class="card__head">
+                            <h2 class="card__title-lg">QUẢN LÝ TRẠNG THÁI TÀI KHOẢN</h2>
+                        </div>
+                        <div class="card__body">
+                            <div class="field">
+                                <label for="rvStateUser">TÀI KHOẢN NGƯỜI CHƠI</label>
+                                <input type="text" id="rvStateUser" placeholder="Nhập username..." autocomplete="off">
+                            </div>
+                            <div class="task-grid">
+                                <button class="btn btn--dark" type="button" data-account="mtv-on">Mở Thành Viên</button>
+                                <button class="btn btn--dark" type="button" data-account="mtv-off">Hủy Thành Viên</button>
+                                <button class="btn btn--dark" type="button" data-account="lock">Khóa Tài Khoản</button>
+                                <button class="btn btn--dark" type="button" data-account="unlock">Mở Khóa Tài Khoản</button>
+                                <button class="btn btn--dark" type="button" data-account="admin-on"
+                                        title="Đặt is_admin = 1 — quyền game, không phải quyền panel">Mở Admin</button>
+                                <button class="btn btn--dark" type="button" data-account="admin-off"
+                                        title="Đặt is_admin = 0 — thu hồi quyền game admin">Đóng Admin</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Khóa IP & chặn clone -->
+                    <div class="card">
+                        <div class="card__head">
+                            <h2 class="card__title-lg">KHÓA IP &amp; CHẶN CLONE</h2>
+                        </div>
+                        <div class="card__body">
+                            <div class="field">
+                                <label for="rvIp">ĐỊA CHỈ IP</label>
+                                <input type="text" id="rvIp" placeholder="Ví dụ: 192.168.1.1" autocomplete="off">
+                            </div>
+                            <div class="task-grid">
+                                <button class="btn btn--dark" type="button" data-ip="ban">Khóa Địa Chỉ IP</button>
+                                <button class="btn btn--dark" type="button" data-ip="unban">Mở Khóa Địa Chỉ IP</button>
+                            </div>
+                            <button class="btn btn--dark btn--block" type="button" id="rvCloneBan">Khóa Toàn Bộ Clone (&gt;5 Acc/IP)</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: QUẢN LÝ GIFTCODES ==================== -->
+            <section class="view" id="view-giftcodes" data-view="giftcodes">
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">DANH SÁCH MÃ GIFTCODES</h2>
+                        <div class="card__toolbar-actions">
+                            <button class="btn btn--primary" type="button" id="btnCreateGiftcode">Tạo Giftcode Mới</button>
+                            <button class="btn btn--primary" type="button" id="btnCreateGiftcodeBatch">Tạo 50 mã dùng 1 lần</button>
+                            <button class="btn btn--success" type="button" id="btnSyncGiftcode">Đồng Bộ Máy Chủ</button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Mã Code</th>
+                                    <th>Lượt Còn Lại</th>
+                                    <th>Chi Tiết Quà Tặng</th>
+                                    <th>Hạn Sử Dụng</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="giftcodeBody"></tbody>
+                        </table>
+                        <div class="table-empty" id="giftcodeEmpty" hidden>Chưa có giftcode nào</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: MÁY CHỦ TRỰC TUYẾN ==================== -->
+            <section class="view" id="view-servers" data-view="servers">
+
+                <!-- ---------- 5 thẻ số liệu, tự cập nhật ---------- -->
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat__label">NGƯỜI CHƠI ONLINE</span>
+                        <b class="stat__value" id="stPlayers">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">BỘ NHỚ RAM</span>
+                        <b class="stat__value" id="stRam">0/0 MB</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">TẢI CPU</span>
+                        <b class="stat__value" id="stCpu">0%</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">SỐ LƯỢNG (THREADS)</span>
+                        <b class="stat__value" id="stThreads">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">PHIÊN (SESSIONS)</span>
+                        <b class="stat__value" id="stSessions">0</b>
+                    </div>
+                </div>
+
+                <!-- ---------- Tabs ---------- -->
+                <div class="tabs" id="serverTabs">
+                    <button class="tab is-active" type="button" data-tab="info">Thông Tin &amp; Tác Vụ</button>
+                    <button class="tab" type="button" data-tab="players">Người Chơi Trực Tuyến</button>
+                    <button class="tab" type="button" data-tab="boss">Quản Lý Boss</button>
+                    <button class="tab" type="button" data-tab="bot">Quản Lý Bot</button>
+                    <button class="tab" type="button" data-tab="skill">Sát Thương Skill</button>
+                    <button class="tab" type="button" data-tab="settings">Thiết Lập Server</button>
+                </div>
+
+                <!-- ---------- Tab: Thông tin & Tác vụ ---------- -->
+                <div class="tabpane is-active" data-pane="info">
+                    <div class="view__grid">
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title-lg">THÔNG SỐ MÁY CHỦ</h2>
+                                <span class="card__hint" id="srvUpdated">—</span>
+                            </div>
+                            <div class="kv">
+                                <div class="kv__row"><span>Thời gian chạy (Uptime)</span><b id="srvUptime">—</b></div>
+                                <div class="kv__row"><span>Tỷ lệ EXP hiện tại</span><b id="srvExp">x1</b></div>
+                                <div class="kv__row"><span>Trạng thái Boss</span><b id="srvBoss">—</b></div>
+                                <div class="kv__row"><span>Số mã Giftcode</span><b id="srvGiftcode">0</b></div>
+                                <div class="kv__row"><span>Vật phẩm ký gửi</span><b id="srvConsign">0</b></div>
+                                <div class="kv__row"><span>Tự động bảo trì</span><b id="srvAuto">—</b></div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title-lg">TÁC VỤ ĐỒNG BỘ DỮ LIỆU</h2>
+                            </div>
+                            <div class="card__body">
+                                <div class="task-grid">
+                                    <button class="btn" type="button" data-task="reload-giftcodes">Reload GiftCodes</button>
+                                    <button class="btn" type="button" data-task="reload-shops">Reload Shops</button>
+                                    <button class="btn" type="button" data-task="reload-npcs">Reload NPCs</button>
+                                    <button class="btn" type="button" data-task="reload-top">Reload Top Cao Thủ</button>
+                                </div>
+                                <button class="btn btn--warning btn--block" type="button" data-task="clean-trash"
+                                        title="Đóng các session không còn người chơi đăng nhập (giống nút Dọn Session trong MenuUI)">
+                                    Dọn Dẹp Phần Rác
+                                </button>
+                                <button class="btn btn--dark btn--block" type="button" data-task="reward-top"
+                                        title="Trao hồng ngọc theo ngày cho các cao thủ Siêu Hạng đang online (top 1 = 1000, top 2-10 = 200, top 11-100 = 20, top 101-199 = 1)">
+                                    Trao Thưởng Top Cao Thủ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ---------- Tab: Người chơi trực tuyến ---------- -->
+                <div class="tabpane" data-pane="players">
+                    <div class="card">
+                        <div class="card__toolbar">
+                            <h2 class="card__title-lg">DANH SÁCH NGƯỜI CHƠI TRỰC TUYẾN</h2>
+                            <span class="card__hint" id="srvPlayerCount">0 người</span>
+                            <div class="card__toolbar-actions">
+                                <input type="search" class="filter-input" id="srvPlayerSearch" placeholder="Nhập tên nhân vật..." autocomplete="off">
+                                <button class="btn btn--danger" type="button" data-task="kick-all">Kick Toàn Bộ</button>
+                            </div>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nhân Vật</th>
+                                        <th>Sức Mạnh</th>
+                                        <th>Bản Đồ</th>
+                                        <th>Nhiệm Vụ</th>
+                                        <th>Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="srvPlayerBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="srvPlayerEmpty" hidden>Không có người chơi online</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ---------- Tab: Quản lý boss ---------- -->
+                <div class="tabpane" data-pane="boss">
+                    <div class="card">
+                        <div class="card__toolbar">
+                            <h2 class="card__title-lg">DANH SÁCH BOSS</h2>
+                            <span class="card__hint" id="srvBossCount">0 boss</span>
+                            <div class="card__toolbar-actions">
+                                <input type="search" class="filter-input" id="srvBossSearch" placeholder="Tìm tên boss..." autocomplete="off">
+                                <button class="btn btn--warning" type="button" data-task="reset-boss">Reset Toàn Bộ</button>
+                                <button class="btn btn--success" type="button" data-task="respawn-boss">Hồi Sinh Boss Nghỉ</button>
+                            </div>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Tên Boss</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Bản Đồ</th>
+                                        <th>HP / Sát Thương</th>
+                                        <th>Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="srvBossBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="srvBossEmpty" hidden>Không có boss nào khớp</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ---------- Tab: Quản lý bot ---------- -->
+                <div class="tabpane" data-pane="bot">
+                    <div class="stats stats--6">
+                        <div class="stat">
+                            <span class="stat__label">TỔNG BOT</span>
+                            <b class="stat__value" id="btTotal">0</b>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__label">BOT CỔ ĐIỂN</span>
+                            <b class="stat__value" id="btClassic">0</b>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__label">BOT PLAYER</span>
+                            <b class="stat__value" id="btPlayer">0</b>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__label">BOT SỰ KIỆN</span>
+                            <b class="stat__value" id="btEvent">0</b>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__label">CÒN SỐNG</span>
+                            <b class="stat__value" id="btAlive">0</b>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__label">ĐÃ CHẾT</span>
+                            <b class="stat__value" id="btDead">0</b>
+                        </div>
+                    </div>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title-lg">TẠO BOT MỚI</h2>
+                            </div>
+                            <div class="card__body">
+                                <div class="grid grid--2">
+                                    <div class="field">
+                                        <label for="botCreateType">LOẠI BOT</label>
+                                        <select id="botCreateType">
+                                            <option value="0">0 — Bot cổ điển (dạo map)</option>
+                                            <option value="2">2 — Bot player (đánh người chơi)</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <label for="botCreateQty">SỐ LƯỢNG (1 - 500)</label>
+                                        <input type="number" id="botCreateQty" min="1" max="500" value="1">
+                                    </div>
+                                </div>
+                                <button class="btn btn--success btn--block" type="button" data-task="bot-create">Tạo Bot</button>
+                                <p class="field__hint">Bot được tạo bằng <b>NewBot.runBot</b> và vào nhóm <b>Bot cổ điển</b> ngay trên máy chủ đang chạy.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title-lg">BỘ LỌC &amp; THAO TÁC</h2>
+                            </div>
+                            <div class="card__body">
+                                <div class="grid grid--2">
+                                    <div class="field">
+                                        <label for="botFilterGroup">NHÓM</label>
+                                        <select id="botFilterGroup">
+                                            <option value="">Tất cả nhóm</option>
+                                            <option value="classic">Bot cổ điển</option>
+                                            <option value="player">Bot player</option>
+                                            <option value="event">Bot sự kiện</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <label for="botFilterType">LOẠI</label>
+                                        <select id="botFilterType">
+                                            <option value="">Tất cả loại</option>
+                                            <option value="0">0 — Cổ điển</option>
+                                            <option value="1">1 — Shop</option>
+                                            <option value="2">2 — Player</option>
+                                            <option value="3">3 — Khác</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="field" style="margin-bottom:12px">
+                                    <label for="botFilterSearch">TÌM THEO ID HOẶC TÊN</label>
+                                    <input type="search" id="botFilterSearch" placeholder="Nhập ID hoặc tên bot..." autocomplete="off">
+                                </div>
+                                <div class="task-grid">
+                                    <button class="btn btn--primary" type="button" data-task="bot-reload">Làm Mới</button>
+                                    <button class="btn btn--danger" type="button" data-task="bot-delete">Xóa Theo Bộ Lọc</button>
+                                </div>
+                                <p class="field__hint">Nút xóa đúng theo nhóm và loại đang chọn. Hệ thống sẽ yêu cầu xác nhận trước khi thực hiện.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__toolbar">
+                            <h2 class="card__title-lg">DANH SÁCH BOT</h2>
+                            <span class="card__hint" id="srvBotCount">Chọn tab Bot để tải dữ liệu.</span>
+                            <div class="card__toolbar-actions">
+                                <button class="btn btn--ghost" type="button" data-task="bot-reload">Tải Lại</button>
+                            </div>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nhóm / Loại</th>
+                                        <th>ID / Tên</th>
+                                        <th>Sức Mạnh</th>
+                                        <th>HP / MP</th>
+                                        <th>Bản Đồ</th>
+                                        <th>Tọa Độ</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="srvBotBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="srvBotEmpty" hidden>Không có bot nào khớp bộ lọc</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ---------- Tab: Sát thương skill ---------- -->
+                <div class="tabpane" data-pane="skill">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3 class="note__title">📌 Sát Thương Skill</h3>
+                            <ul class="note__list">
+                                <li>Server hiện chưa có bảng cấu hình sát thương skill trong database — sát thương được tính trực tiếp trong code chiến đấu.</li>
+                                <li>Khi nào cần chỉnh sát thương skill, sửa trong <b>SkillService</b> / <b>NPoint</b> của source rồi build lại.</li>
+                                <li>Tab này sẽ hiển thị bảng cấu hình ngay khi bảng dữ liệu được thêm vào database.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ---------- Tab: Thiết lập server ---------- -->
+                <div class="tabpane" data-pane="settings">
+                    <div class="cards-grid cards-grid--wide">
+
+                        <div class="card">
+                            <div class="card__head"><h2 class="card__title-lg">QUYỀN ĐĂNG NHẬP GAME</h2></div>
+                            <div class="card__body">
+                                <label class="check"><input type="checkbox" id="srvAdminOnly" disabled> Chỉ admin được vào server</label>
+                                <p class="state-line" id="srvAdminOnlyStatus" role="status">Đang tải trạng thái…</p>
+                                <p class="field__hint">Bật để chỉ tài khoản admin trong game đăng nhập. Tắt để mở cho tất cả tài khoản. Áp dụng cho lượt đăng nhập mới và được lưu sau khi khởi động lại server.</p>
+                                <button class="btn" type="button" id="srvAdminOnlyReload">Tải lại trạng thái</button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title-lg">HỆ SỐ EXP MÁY CHỦ</h2>
+                            </div>
+                            <div class="card__body">
+                                <div class="field">
+                                    <label for="srvExpRate">HỆ SỐ NHÂN KINH NGHIỆM (1 - 32766)</label>
+                                    <div class="inline-row">
+                                        <input type="number" id="srvExpRate" min="1" max="32766" value="1">
+                                        <button class="btn btn--primary" type="button" id="srvExpSave">Cập Nhật</button>
+                                    </div>
+                                </div>
+                                <p class="field__hint">Đổi xong, toàn bộ người chơi online sẽ nhận thông báo từ Admin.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title-lg">SỰ KIỆN ĐANG CHẠY</h2>
+                            </div>
+                            <div class="card__body">
+                                <div class="field">
+                                    <label for="srvEventSelect">CHỌN SỰ KIỆN HOẠT ĐỘNG</label>
+                                    <div class="inline-row">
+                                        <select id="srvEventSelect"></select>
+                                        <button class="btn btn--primary" type="button" id="srvEventApply">Áp Dụng</button>
+                                    </div>
+                                </div>
+                                <p class="field__hint">Đang chạy: <b id="srvEventCurrent">—</b>. Đổi sự kiện sẽ nạp lại dữ liệu sự kiện cho máy chủ ngay.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title-lg">TỰ ĐỘNG LƯU (AUTOSAVE)</h2>
+                            </div>
+                            <div class="card__body">
+                                <div class="field">
+                                    <label>TRẠNG THÁI TỰ ĐỘNG LƯU DỮ LIỆU</label>
+                                    <b id="srvAutoSaveState" class="state-line">—</b>
+                                </div>
+                                <div class="task-grid" style="margin-top:12px">
+                                    <button class="btn btn--success" type="button" data-task="autosave-on">Bật AutoSave</button>
+                                    <button class="btn btn--danger" type="button" data-task="autosave-off">Tắt AutoSave</button>
+                                </div>
+                                <p class="field__hint">AutoSave dùng <b>HoannganhManager</b>, lưu toàn bộ người chơi online mỗi 90 phút.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title-lg">BẢO TRÌ MÁY CHỦ</h2>
+                            </div>
+                            <div class="card__body">
+                                <div class="field">
+                                    <label for="srvMaintSeconds">ĐẾM NGƯỢC BẢO TRÌ NGAY (GIÂY)</label>
+                                    <div class="inline-row">
+                                        <input type="number" id="srvMaintSeconds" min="5" max="86400" value="60">
+                                        <button class="btn btn--danger" type="button" id="srvMaintNow">Bảo Trì Ngay</button>
+                                    </div>
+                                </div>
+                                <p class="field__hint">Máy chủ sẽ thông báo cho toàn bộ người chơi rồi đóng sau số giây này.</p>
+
+                                <div class="field" style="margin-top:16px;padding-top:14px;border-top:1px dashed var(--border)">
+                                    <label for="srvMaintHour">HẸN GIỜ BẢO TRÌ HÀNG NGÀY</label>
+                                    <div class="inline-row">
+                                        <input type="number" id="srvMaintHour" min="0" max="23" value="23" class="input-tiny">
+                                        <span class="sep">:</span>
+                                        <input type="number" id="srvMaintMinute" min="0" max="59" value="59" class="input-tiny">
+                                        <label class="check"><input type="checkbox" id="srvMaintEnable"> BẬT</label>
+                                        <button class="btn btn--primary" type="button" id="srvMaintSave">Lưu</button>
+                                    </div>
+                                </div>
+                                <p class="field__hint">Giờ hẹn được lưu vào <b>AutoMaintenance.hours</b>/<b>mins</b> của tiến trình đang chạy.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 class="card__title-lg">ĐỊNH DẠNG DỮ LIỆU TIỀN TỆ</h2>
+                            </div>
+                            <div class="card__body">
+                                <div class="field">
+                                    <label for="srvCurrency">HỆ THỐNG SỐ DỮ VÀNG/NGỌC</label>
+                                    <div class="inline-row">
+                                        <select id="srvCurrency">
+                                            <option value="1">int (Tối đa 2 tỷ)</option>
+                                            <option value="0">long (Không giới hạn)</option>
+                                        </select>
+                                        <button class="btn btn--primary" type="button" id="srvCurrencyApply">Áp Dụng</button>
+                                    </div>
+                                </div>
+                                <p class="field__hint">Quyết định cách máy chủ đọc số vàng/ngọc từ database (Manager.readInt).</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: CỬA HÀNG SHOP NPC ==================== -->
+            <section class="view" id="view-shop-npc" data-view="shop-npc">
+                <div class="shop">
+
+                    <!-- ---------- Cột trái: danh sách shop theo NPC ---------- -->
+                    <div class="card shop__aside">
+                        <div class="card__toolbar">
+                            <h2 class="card__title-lg">DANH SÁCH SHOP NPC</h2>
+                            <div class="card__toolbar-actions">
+                                <button class="btn btn--primary" type="button" id="shopAdd">Thêm Shop</button>
+                            </div>
+                        </div>
+                        <div class="shop__list" id="shopList"></div>
+                        <div class="table-empty" id="shopListEmpty" hidden>Chưa có shop nào</div>
+                    </div>
+
+                    <!-- ---------- Cột phải: tab + bảng vật phẩm ---------- -->
+                    <div class="card shop__main">
+                        <div class="card__toolbar shop__tabbar">
+                            <div class="tabs tabs--flat" id="shopTabs"></div>
+                            <div class="card__toolbar-actions">
+                                <button class="btn btn--primary" type="button" id="shopTabAdd">Thêm Tab</button>
+                                <button class="btn btn--danger" type="button" id="shopTabDelete">Xóa Tab</button>
+                            </div>
+                        </div>
+
+                        <div class="card__toolbar shop__itemsbar">
+                            <h2 class="card__title-lg">Vật Phẩm Bán</h2>
+                            <div class="card__toolbar-actions">
+                                <button class="btn btn--primary" type="button" id="shopItemAdd">Thêm Vật Phẩm</button>
+                                <button class="btn btn--success" type="button" id="shopSync">Đồng Bộ Server</button>
+                            </div>
+                        </div>
+
+                        <p class="field__hint table-hint" id="shopTypeHint" hidden></p>
+
+                        <div class="table-wrap">
+                            <table class="table table--shop">
+                                <thead>
+                                    <tr>
+                                        <th>Mã Template</th>
+                                        <th>Tên Vật Phẩm</th>
+                                        <th>Giá Bán</th>
+                                        <th>Loại Tiền</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Icon Bổ Sung</th>
+                                        <th>Chỉ Số Options</th>
+                                        <th>Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="shopItemBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="shopItemEmpty" hidden>Shop này chưa có vật phẩm nào</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: QUẢN LÝ NHÂN VẬT ==================== -->
+            <section class="view" id="view-player" data-view="player">
+
+                <!-- ---------- Thẻ số liệu ---------- -->
+                <div class="stats stats--4">
+                    <div class="stat">
+                        <span class="stat__label">TỔNG NHÂN VẬT</span>
+                        <b class="stat__value" id="plTotal">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">ĐANG ONLINE</span>
+                        <b class="stat__value" id="plOnline">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">ĐANG HIỂN THỊ</span>
+                        <b class="stat__value" id="plShown">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">CÁCH ĐỌC SỐ VÀNG</span>
+                        <b class="stat__value" id="plReadInt">—</b>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">DANH SÁCH NHÂN VẬT</h2>
+                        <div class="card__toolbar-actions">
+                            <input type="search" id="playerSearch" class="player-search"
+                                   placeholder="Tìm theo tên nhân vật..." autocomplete="off">
+                            <select id="playerFilter" class="player-filter">
+                                <option value="">Tất cả trạng thái</option>
+                                <option value="online">Đang online</option>
+                                <option value="offline">Đang offline</option>
+                            </select>
+                            <button class="btn btn--primary" type="button" id="playerReload">Tải Lại</button>
+                        </div>
+                    </div>
+
+                    <p class="field__hint table-hint" id="playerHint" hidden></p>
+
+                    <div class="table-wrap">
+                        <table class="table table--player">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nhân Vật</th>
+                                    <th>Tài Khoản</th>
+                                    <th>Hệ</th>
+                                    <th>Sức Mạnh</th>
+                                    <th>Tài Sản</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Ngày Tạo</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="playerBody"></tbody>
+                        </table>
+                        <div class="table-empty" id="playerEmpty" hidden>Không có nhân vật nào khớp bộ lọc</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: QUẢN LÝ MAP ==================== -->
+            <section class="view" id="view-map" data-view="map">
+                <div class="stats stats--4">
+                    <div class="stat">
+                        <span class="stat__label">TỔNG BẢN ĐỒ</span>
+                        <b class="stat__value" id="mpTotal">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">TỔNG KHU (ZONES)</span>
+                        <b class="stat__value" id="mpZones">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">BẢN ĐỒ CÓ QUÁI</span>
+                        <b class="stat__value" id="mpWithMobs">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">BẢN ĐỒ CÓ NPC</span>
+                        <b class="stat__value" id="mpWithNpcs">0</b>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">DANH SÁCH BẢN ĐỒ</h2>
+                        <div class="card__toolbar-actions">
+                            <input type="search" id="mapSearch" class="player-search"
+                                   placeholder="Tìm theo tên bản đồ..." autocomplete="off">
+                            <select id="mapTypeFilter" class="player-filter"></select>
+                            <select id="mapPlanetFilter" class="player-filter"></select>
+                            <button class="btn" type="button" id="mapReload">Tải Lại</button>
+                            <button class="btn btn--success" type="button" id="mapSync"
+                                    title="Đọc lại map_template vào Manager.MAP_TEMPLATES (client mới đăng nhập sẽ nhận dữ liệu mới)">
+                                Nạp Lại Server
+                            </button>
+                        </div>
+                    </div>
+
+                    <p class="field__hint table-hint" id="mapHint" hidden></p>
+
+                    <div class="table-wrap">
+                        <table class="table table--map">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên Bản Đồ</th>
+                                    <th>Hành Tinh</th>
+                                    <th>Loại</th>
+                                    <th>Zones</th>
+                                    <th>Max/Khu</th>
+                                    <th>Quái</th>
+                                    <th>NPC</th>
+                                    <th>Cổng</th>
+                                    <th>Giới Hạn Hệ</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mapBody"></tbody>
+                        </table>
+                        <div class="table-empty" id="mapEmpty" hidden>Không có bản đồ nào khớp bộ lọc</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: QUẢN LÝ MOB ==================== -->
+            <section class="view" id="view-mob" data-view="mob">
+                <div class="stats stats--4">
+                    <div class="stat">
+                        <span class="stat__label">TỔNG MẪU QUÁI</span>
+                        <b class="stat__value" id="mbTotal">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">QUÁI MẶT ĐẤT</span>
+                        <b class="stat__value" id="mbGround">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">QUÁI BAY</span>
+                        <b class="stat__value" id="mbFly">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">ĐANG ĐƯỢC DÙNG</span>
+                        <b class="stat__value" id="mbUsed">0</b>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">DANH SÁCH MẪU QUÁI</h2>
+                        <div class="card__toolbar-actions">
+                            <input type="search" id="mobSearch" class="player-search"
+                                   placeholder="Tìm theo tên quái..." autocomplete="off">
+                            <select id="mobTypeFilter" class="player-filter"></select>
+                            <button class="btn" type="button" id="mobReload">Tải Lại</button>
+                            <button class="btn btn--primary" type="button" id="mobAdd">Thêm Quái</button>
+                        </div>
+                    </div>
+
+                    <p class="field__hint table-hint" id="mobHint" hidden></p>
+
+                    <div class="table-wrap">
+                        <table class="table table--mob">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên Quái</th>
+                                    <th>Kiểu</th>
+                                    <th>HP</th>
+                                    <th>Range Move</th>
+                                    <th>Speed</th>
+                                    <th>Dart</th>
+                                    <th>% Sát Thương</th>
+                                    <th>% Tiềm Năng</th>
+                                    <th>% Vàng</th>
+                                    <th>Số Bản Đồ</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mobBody"></tbody>
+                        </table>
+                        <div class="table-empty" id="mobEmpty" hidden>Không có quái nào khớp bộ lọc</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="view" id="view-top-gift" data-view="top-gift">
+                <div class="stats stats--3">
+                    <div class="stat"><span class="stat__label">BẢNG TOP NHẬN THƯỞNG</span><b class="stat__value" id="topTotal">0</b></div>
+                    <div class="stat"><span class="stat__label">ĐANG BẬT TỰ ĐỘNG</span><b class="stat__value" id="topAutoCount">0</b></div>
+                    <div class="stat"><span class="stat__label">ĐÃ HOÀN TẤT</span><b class="stat__value" id="topDoneCount">0</b></div>
+                </div>
+                <div class="card">
+                    <div class="card__toolbar"><h2 class="card__title-lg">QUẢN LÝ TOP &amp; QUÀ TOP</h2><div class="card__toolbar-actions"><select id="topSelect" aria-label="Chọn bảng top"></select><button class="btn" id="topReload" type="button">Tải lại</button></div></div>
+                    <p class="field__hint table-hint" id="topNotes">Đang tải top của server…</p>
+                    <p class="field__hint table-hint" id="topClock"></p>
+                    <p class="field__hint table-hint top-error" id="topError" role="alert" hidden></p>
+                </div>
+                <div id="topDetail" hidden>
+                    <div class="card">
+                        <div class="card__toolbar"><h2 class="card__title-lg" id="topTitle"></h2><span class="tag" id="topStatus"></span><div class="card__toolbar-actions"><button class="btn" type="button" id="topToggle">Bật tự động</button><button class="btn btn--primary" type="button" id="topAward">Trao top đến hạn</button></div></div>
+                        <p class="field__hint table-hint" id="topSummary"></p>
+                        <div class="top-tabs"><button class="btn btn--primary" type="button" data-top-tab="ranking">Bảng xếp hạng</button><button class="btn" type="button" data-top-tab="rewards">Quà &amp; lịch trao</button><button class="btn" type="button" data-top-tab="progress">Tiến độ trao</button></div>
+                    </div>
+                    <div class="card" id="topRankingTab"><p class="field__hint table-hint top-error" id="topBoardError" hidden></p><div class="table-wrap"><table class="table"><thead><tr><th>Hạng</th><th>ID</th><th>Nhân vật</th><th>Điểm / thành tích</th><th>Quà đợt hiện tại</th><th>Nguồn dữ liệu</th></tr></thead><tbody id="topRankingBody"></tbody></table><div class="table-empty" id="topRankingEmpty">Chưa có người chơi đủ điều kiện vào top.</div></div></div>
+                    <div id="topRewardsTab" hidden>
+                        <form id="topForm" class="card top-editor">
+                            <p class="field__hint" id="topEditHint"></p>
+                            <label class="top-new-cycle" id="topNewCycleWrap" hidden><input type="checkbox" id="tfNewCycle"> Mở đợt mới sau đợt đã hoàn tất (mặc định tắt trao tự động)</label>
+                            <fieldset id="topConfigFields">
+                                <div class="top-fields">
+                                    <div class="field"><label for="tfName">TÊN BẢNG TOP</label><input id="tfName" type="text" maxlength="25" required></div>
+                                    <div class="field"><label for="tfDate">NGÀY GIỜ TRAO (THEO SERVER)</label><input id="tfDate" type="datetime-local" step="1" required></div>
+                                    <div class="field"><label for="tfLimit">SỐ HẠNG NHẬN QUÀ</label><input id="tfLimit" type="number" min="1" max="100" step="1" required></div>
+                                </div>
+                                <div class="card__toolbar"><h3>QUÀ THEO TỪNG HẠNG</h3><button class="btn" type="button" id="topRankAdd">Thêm hạng nhận quà</button></div>
+                                <p class="field__hint">Mỗi hạng có thể nhận nhiều vật phẩm kèm option. Cần đủ quà cho hạng 1 đến số hạng nhận quà trước khi bật tự động. ID 1227 và 1467 được game đổi theo hành tinh của người nhận.</p>
+                                <div id="topRewardGroups"></div>
+                            </fieldset>
+                            <div class="modal__actions"><button class="btn btn--primary" type="submit" id="topSave">Lưu quà &amp; lịch</button></div>
+                        </form>
+                    </div>
+                    <div class="card" id="topProgressTab" hidden><p class="field__hint table-hint">Danh sách người đã nhận trong đợt đang trao. Khi trao đủ, server đánh dấu hoàn tất và xóa danh sách này để chuẩn bị đợt sau.</p><div class="table-wrap"><table class="table"><thead><tr><th>ID người chơi</th><th>Hạng đã nhận</th></tr></thead><tbody id="topProgressBody"></tbody></table><div class="table-empty" id="topProgressEmpty">Không có tiến độ đang trao.</div></div></div>
+                </div>
+                <div class="card" id="topExtraCard" hidden>
+                    <div class="card__toolbar"><h2 class="card__title-lg">CÁC BẢNG TOP KHÁC TRONG GAME</h2><div class="card__toolbar-actions"><select id="topExtraSelect" aria-label="Chọn bảng top khác"></select></div></div>
+                    <p class="field__hint table-hint">Điểm đã lưu của Bóng Master, Lượt Quay, Săn Boss sự kiện và Máy Đấm. Những bảng này hiện không dùng lịch/quà tự động của ba top phía trên.</p>
+                    <p class="field__hint table-hint top-error" id="topExtraError" hidden></p>
+                    <div class="table-wrap"><table class="table"><thead><tr><th>Hạng</th><th>ID</th><th>Nhân vật</th><th>Điểm</th></tr></thead><tbody id="topExtraBody"></tbody></table><div class="table-empty" id="topExtraEmpty">Chưa có dữ liệu.</div></div>
+                </div>
+                <datalist id="topItemCatalog"></datalist><datalist id="topOptionCatalog"></datalist>
+            </section>
+
+            <section class="view" id="view-boss" data-view="boss">
+                <div class="stats stats--3">
+                    <div class="stat"><span class="stat__label">MẪU / GIAI ĐOẠN BOSS</span><b class="stat__value" id="bossTemplateCount">0</b></div>
+                    <div class="stat"><span class="stat__label">ĐÃ CHỈNH CẤU HÌNH</span><b class="stat__value" id="bossCustomCount">0</b></div>
+                    <div class="stat"><span class="stat__label">BOSS TRONG SERVER / ĐANG NGHỈ</span><b class="stat__value" id="bossRuntimeCount">0 / 0</b></div>
+                </div>
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">QUẢN LÝ BOSS</h2>
+                        <div class="card__toolbar-actions">
+                            <button class="btn btn--primary" type="button" data-boss-tab="templates">Mẫu boss</button>
+                            <button class="btn" type="button" data-boss-tab="runtime">Boss trong server</button>
+                            <button class="btn" type="button" id="bossReload">Tải lại</button>
+                        </div>
+                    </div>
+                    <p class="field__hint table-hint" id="bossNotes">Đang tải cấu hình boss…</p>
+                    <p class="field__hint table-hint boss-error" id="bossError" role="alert" hidden></p>
+                    <p class="field__hint table-hint" id="bossMapWarning" hidden></p>
+                </div>
+                <div class="card boss-editor" id="bossEditor" hidden>
+                    <form id="bossForm">
+                        <h2 class="card__title-lg" id="bossEditorTitle">SỬA MẪU BOSS</h2>
+                        <p class="field__hint" id="bossAppearHint"></p>
+                        <div class="boss-fields">
+                            <div class="field"><label for="bfName">TÊN BOSS</label><input id="bfName" type="text" maxlength="100" required><span class="field__hint">Giữ %d nếu tên có số ngẫu nhiên. Dùng %% cho dấu %.</span></div>
+                            <div class="field"><label for="bfGender">HÀNH TINH</label><select id="bfGender"><option value="0">Trái Đất</option><option value="1">Namec</option><option value="2">Xayda</option><option value="3">Khác</option></select></div>
+                            <div class="field"><label for="bfDame">SÁT THƯƠNG GỐC</label><input id="bfDame" type="number" min="0" max="1000000000000000" step="1" required></div>
+                            <div class="field"><label for="bfHp">HP GỐC (CÁCH NHAU BẰNG DẤU PHẨY)</label><input id="bfHp" type="text" required inputmode="numeric"><span class="field__hint">Boss chọn ngẫu nhiên một giá trị trong danh sách khi xuất hiện.</span></div>
+                            <div class="field"><label for="bfRest">THỜI GIAN NGHỈ (GIÂY)</label><input id="bfRest" type="number" min="0" max="31536000" step="1" required><span class="field__hint">0 giữ cơ chế riêng của boss; boss phụ vẫn chờ boss chính gọi.</span></div>
+                            <div class="field"><label for="bfMaps">ID MAP (CÁCH NHAU BẰNG DẤU PHẨY)</label><input id="bfMaps" type="text"><span class="field__hint">Để trống với boss theo map của boss chính/phó bản. Map 5 không cho boss xuất hiện.</span></div>
+                        </div>
+                        <div class="boss-map-picker"><div class="field"><label for="bfMapChoice">THÊM MAP VÀO DANH SÁCH</label><select id="bfMapChoice"></select></div><button class="btn" type="button" id="bossMapAdd">Thêm map</button></div>
+                        <h3>NGOẠI HÌNH</h3>
+                        <div class="boss-outfit">
+                            <div class="field"><label for="bfHead">ĐẦU</label><input id="bfHead" type="number" min="-1" max="32767" step="1" required></div>
+                            <div class="field"><label for="bfBody">THÂN</label><input id="bfBody" type="number" min="-1" max="32767" step="1" required></div>
+                            <div class="field"><label for="bfLeg">CHÂN</label><input id="bfLeg" type="number" min="-1" max="32767" step="1" required></div>
+                            <div class="field"><label for="bfBag">TÚI</label><input id="bfBag" type="number" min="-1" max="32767" step="1" required></div>
+                            <div class="field"><label for="bfAura">HÀO QUANG</label><input id="bfAura" type="number" min="-1" max="32767" step="1" required></div>
+                            <div class="field"><label for="bfEffect">HIỆU ỨNG</label><input id="bfEffect" type="number" min="-1" max="32767" step="1" required></div>
+                        </div>
+                        <div class="modal__actions"><button class="btn" type="button" id="bossCancel">Hủy</button><button class="btn" type="button" id="bossReset">Khôi phục cấu hình gốc</button><button class="btn btn--primary" type="submit" id="bossSave">Lưu cấu hình boss</button></div>
+                    </form>
+                </div>
+                <div class="card">
+                    <div class="card__toolbar">
+                        <input class="player-search" id="bossSearch" type="text" placeholder="Tìm tên boss, mã mẫu, ID hoặc map…" aria-label="Tìm boss">
+                        <select class="player-filter" id="bossFilter" aria-label="Lọc cấu hình boss"><option value="">Tất cả cấu hình</option><option value="custom">Đã chỉnh</option><option value="default">Cấu hình gốc</option></select>
+                        <span class="field__hint" id="bossShown"></span>
+                    </div>
+                    <div class="table-wrap" id="bossTemplatesTab"><table class="table"><thead><tr><th>Mã mẫu / giai đoạn</th><th>Tên boss</th><th>HP gốc</th><th>Sát thương</th><th>Map</th><th>Nghỉ (giây)</th><th>Kiểu xuất hiện</th><th>Cấu hình</th><th>Thao tác</th></tr></thead><tbody id="bossTemplatesBody"></tbody></table></div>
+                    <div class="table-wrap" id="bossRuntimeTab" hidden><table class="table"><thead><tr><th>ID</th><th>Tên boss</th><th>Trạng thái</th><th>Map / khu</th><th>HP hiện tại / tối đa</th><th>Sát thương</th><th>Mẫu / giai đoạn</th><th>Thao tác</th></tr></thead><tbody id="bossRuntimeBody"></tbody></table></div>
+                    <div class="table-empty" id="bossEmpty" hidden>Không có boss phù hợp.</div>
+                </div>
+            </section>
+
+            <section class="view" id="view-drop" data-view="drop">
+                <div class="stats stats--4">
+                    <div class="stat"><span class="stat__label">QUY TẮC TÙY CHỈNH</span><b class="stat__value" id="dropTotal">0</b></div>
+                    <div class="stat"><span class="stat__label">ĐANG BẬT</span><b class="stat__value" id="dropEnabled">0</b></div>
+                    <div class="stat"><span class="stat__label">ÁP DỤNG</span><b class="stat__value">Ngay sau khi lưu</b></div>
+                </div>
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">QUẢN LÝ DROP</h2>
+                        <div class="card__toolbar-actions">
+                            <button class="btn" type="button" id="dropReload">Tải lại</button>
+                        </div>
+                    </div>
+                    <p class="field__hint table-hint" id="dropNotes">Đang tải cấu hình drop…</p>
+                    <p class="field__hint table-hint drop-error" id="dropError" role="alert" hidden></p>
+                </div>
+                <div id="dropRulesTab">
+                    <div class="card drop-editor" id="dropEditor" hidden>
+                        <form id="dropRuleForm">
+                            <h2 class="card__title-lg" id="dropEditorTitle">THÊM QUY TẮC DROP</h2>
+                            <div class="grid grid--3">
+                                <div class="field"><label for="dfName">TÊN QUY TẮC</label><input id="dfName" type="text" required maxlength="100"></div>
+                                <div class="field"><label for="dfMap">MAP</label><select id="dfMap"></select></div>
+                                <div class="field"><label for="dfMob">LOẠI QUÁI</label><select id="dfMob"></select></div>
+                                <div class="field"><label for="dfItem">VẬT PHẨM (ID HOẶC CHỌN TRONG DANH SÁCH)</label><input id="dfItem" type="text" list="dropItems" required pattern="[0-9]+" inputmode="numeric"><datalist id="dropItems"></datalist><span class="field__hint" id="dfItemName"></span></div>
+                                <div class="field"><label for="dfChance">TỶ LỆ RƠI (%)</label><input id="dfChance" type="number" min="0" max="100" step="0.0001" required></div>
+                                <div class="field"><label for="dfEnabled">TRẠNG THÁI</label><select id="dfEnabled"><option value="1">Đang bật</option><option value="0">Đang tắt</option></select></div>
+                                <div class="field"><label for="dfMin">SỐ LƯỢNG ÍT NHẤT</label><input id="dfMin" type="number" min="1" max="99999" step="1" required></div>
+                                <div class="field"><label for="dfMax">SỐ LƯỢNG NHIỀU NHẤT</label><input id="dfMax" type="number" min="1" max="99999" step="1" required></div>
+                            </div>
+                            <p class="field__hint">Map và loại quái được xét đồng thời. Chọn “Tất cả” để bỏ điều kiện đó. Tỷ lệ 0% không rơi; 100% luôn rơi.</p>
+                            <div class="card__toolbar"><h3>OPTION VẬT PHẨM</h3><button class="btn" type="button" id="dropOptionAdd">Thêm option</button></div>
+                            <div id="dropOptions"></div><datalist id="dropOptionCatalog"></datalist>
+                            <div class="modal__actions"><button class="btn" type="button" id="dropCancel">Hủy</button><button class="btn btn--primary" type="submit" id="dropRuleSave">Lưu và áp dụng</button></div>
+                        </form>
+                    </div>
+                    <div class="card">
+                        <div class="card__toolbar"><h2 class="card__title-lg">VẬT PHẨM RƠI TÙY CHỈNH</h2><div class="card__toolbar-actions">
+                            <input type="search" class="player-search" id="dropSearch" placeholder="Tìm tên, ID vật phẩm, map hoặc quái…">
+                            <button class="btn btn--primary" type="button" id="dropAdd" disabled>Thêm drop</button>
+                        </div></div>
+                        <div class="table-wrap"><table class="table"><thead><tr><th>Trạng thái</th><th>Quy tắc</th><th>Vật phẩm</th><th>Map</th><th>Quái</th><th>Tỷ lệ</th><th>Số lượng</th><th>Options</th><th>Thao tác</th></tr></thead><tbody id="dropBody"></tbody></table>
+                        <div class="table-empty" id="dropEmpty">Chưa có quy tắc drop tùy chỉnh.</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="view" id="view-boss-drop" data-view="boss-drop">
+                <div class="stats stats--4">
+                    <div class="stat"><span class="stat__label">QUY TẮC TÙY CHỈNH</span><b class="stat__value" id="bdropTotal">0</b></div>
+                    <div class="stat"><span class="stat__label">ĐANG BẬT</span><b class="stat__value" id="bdropEnabled">0</b></div>
+                    <div class="stat"><span class="stat__label">MẪU / GIAI ĐOẠN BOSS</span><b class="stat__value" id="bdropRateCount">0</b></div>
+                    <div class="stat"><span class="stat__label">ÁP DỤNG</span><b class="stat__value">Ngay sau khi lưu</b></div>
+                </div>
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">QUẢN LÝ DROP BOSS</h2>
+                        <div class="card__toolbar-actions">
+                            <button class="btn" type="button" id="bdropReload">Tải lại</button>
+                        </div>
+                    </div>
+                    <p class="field__hint table-hint" id="bdropNotes">Đang tải cấu hình drop boss…</p>
+                    <p class="field__hint table-hint drop-error" id="bdropError" role="alert" hidden></p>
+                </div>
+                <div id="bdropRulesTab">
+                    <div class="card drop-editor" id="bdropEditor" hidden>
+                        <form id="bdropRuleForm">
+                            <h2 class="card__title-lg" id="bdropEditorTitle">THÊM QUY TẮC DROP</h2>
+                            <div class="grid grid--3">
+                                <div class="field"><label for="bdfName">TÊN QUY TẮC</label><input id="bdfName" type="text" required maxlength="100"></div>
+                                <div class="field"><label for="bdfMap">MAP</label><select id="bdfMap"></select></div>
+                                <div class="field"><label for="bdfBoss">MẪU / GIAI ĐOẠN BOSS</label><select id="bdfBoss"></select></div>
+                                <div class="field" id="bdropItemPicker">
+                                    <label for="bdfItem">VẬT PHẨM</label>
+                                    <input id="bdfItem" type="text" list="bdropItems" required pattern="[0-9]+" inputmode="numeric" placeholder="ID vật phẩm"><datalist id="bdropItems"></datalist>
+                                    <span class="field__hint" id="bdfItemName"></span>
+                                    <label for="bdfItemSearch">TÌM VẬT PHẨM THEO TÊN / ID</label>
+                                    <input id="bdfItemSearch" type="search" placeholder="Ví dụ: đá ngũ sắc, da ngu sac, 674…" autocomplete="off" aria-controls="bdropItemResults" aria-expanded="false">
+                                    <div id="bdropItemResults" hidden>
+                                        <p class="field__hint" id="bdropItemCount" role="status"></p>
+                                        <div id="bdropItemChoices" role="group" aria-label="Kết quả tìm vật phẩm"></div>
+                                    </div>
+                                </div>
+                                <div class="field"><label for="bdfChance">TỶ LỆ RƠI (%)</label><input id="bdfChance" type="number" min="0" max="100" step="0.0001" required></div>
+                                <div class="field"><label for="bdfEnabled">TRẠNG THÁI</label><select id="bdfEnabled"><option value="1">Đang bật</option><option value="0">Đang tắt</option></select></div>
+                                <div class="field"><label for="bdfMin">SỐ LƯỢNG ÍT NHẤT</label><input id="bdfMin" type="number" min="1" max="99999" step="1" required></div>
+                                <div class="field"><label for="bdfMax">SỐ LƯỢNG NHIỀU NHẤT</label><input id="bdfMax" type="number" min="1" max="99999" step="1" required></div>
+                            </div>
+                            <p class="field__hint">Chọn chính xác giai đoạn boss. Map được xét thêm nếu không chọn “Tất cả map”. Tỷ lệ 0% không rơi; 100% luôn rơi.</p>
+                            <div class="card__toolbar"><h3>OPTION VẬT PHẨM</h3><button class="btn" type="button" id="bdropOptionAdd">Thêm option</button></div>
+                            <div id="bdropOptions"></div><datalist id="bdropOptionCatalog"></datalist>
+                            <div class="modal__actions"><button class="btn" type="button" id="bdropCancel">Hủy</button><button class="btn btn--primary" type="submit" id="bdropRuleSave">Lưu và áp dụng</button></div>
+                        </form>
+                    </div>
+                    <div class="card">
+                        <div class="card__toolbar"><h2 class="card__title-lg">VẬT PHẨM RƠI TÙY CHỈNH</h2><div class="card__toolbar-actions">
+                            <input type="search" class="player-search" id="bdropSearch" placeholder="Tìm tên, ID vật phẩm, map hoặc boss…">
+                            <button class="btn btn--primary" type="button" id="bdropAdd" disabled>Thêm drop boss</button>
+                        </div></div>
+                        <div class="table-wrap"><table class="table"><thead><tr><th>Boss / giai đoạn</th><th>Trạng thái</th><th>Rule #</th><th>Vật phẩm</th><th>Map</th><th>Tỷ lệ</th><th>Số lượng</th><th>Options</th><th>Thao tác</th></tr></thead><tbody id="bdropBody"></tbody></table>
+                        <div class="table-empty" id="bdropEmpty">Chưa có drop boss tùy chỉnh.</div></div>
+                    </div>
+                </div>
+            </section>
+            <section class="view" id="view-combine-rates" data-view="combine-rates">
+                <div class="stats stats--4">
+                    <div class="stat"><span class="stat__label">SỐ TỈ LỆ</span><b class="stat__value" id="crateTotal">0</b></div>
+                    <div class="stat"><span class="stat__label">NHÓM</span><b class="stat__value" id="crateGroupCount">0</b></div>
+                    <div class="stat"><span class="stat__label">ÁP DỤNG</span><b class="stat__value">Ngay sau khi lưu</b></div>
+                </div>
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">TỈ LỆ ĐẬP ĐỒ</h2>
+                        <div class="card__toolbar-actions"><button class="btn" type="button" id="crateReload">Tải lại</button></div>
+                    </div>
+                    <p class="field__hint table-hint" id="crateNotes">Đang tải tỉ lệ đập đồ…</p>
+                    <p class="field__hint table-hint drop-error" id="crateError" role="alert" hidden></p>
+                </div>
+                <div class="card">
+                    <div class="card__toolbar"><h3>TỈ LỆ THEO NHÓM</h3><button class="btn btn--primary" type="button" id="crateSave" disabled>Lưu và áp dụng</button></div>
+                    <form id="crateForm"><div id="crateGroupsWrap"></div></form>
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: QUẢN LÝ NỘI TẠI ==================== -->
+            <section class="view" id="view-intrinsic" data-view="intrinsic">
+                <div class="stats stats--4">
+                    <div class="stat">
+                        <span class="stat__label">TỔNG NỘI TẠI</span>
+                        <b class="stat__value" id="itTotal">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">DÙNG CHUNG 3 HỆ</span>
+                        <b class="stat__value" id="itShared">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">RIÊNG TỪNG HỆ</span>
+                        <b class="stat__value" id="itOwn">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">NHÂN VẬT ĐANG MANG</span>
+                        <b class="stat__value" id="itPlayers">0</b>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">DANH SÁCH NỘI TẠI</h2>
+                        <div class="card__toolbar-actions">
+                            <input type="search" id="intrinsicSearch" class="player-search"
+                                   placeholder="Tìm theo tên nội tại..." autocomplete="off">
+                            <select id="intrinsicGenderFilter" class="player-filter"></select>
+                            <button class="btn" type="button" id="intrinsicReload">Tải Lại</button>
+                            <button class="btn btn--primary" type="button" id="intrinsicAdd">Thêm Nội Tại</button>
+                        </div>
+                    </div>
+
+                    <p class="field__hint table-hint">
+                        Tên nội tại dùng chỗ trống <b>p0 p1 p2 p3</b> — game tự thay bằng
+                        “từ p0% đến p1%” và “từ p2% đến p3%” khi hiển thị cho người chơi.
+                    </p>
+
+                    <div class="table-wrap">
+                        <table class="table table--intrinsic">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Icon</th>
+                                    <th>Mô Tả Trong Game</th>
+                                    <th>Tham Số 1</th>
+                                    <th>Tham Số 2</th>
+                                    <th>Hệ</th>
+                                    <th>Đang Dùng</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="intrinsicBody"></tbody>
+                        </table>
+                        <div class="table-empty" id="intrinsicEmpty" hidden>Không có nội tại nào khớp bộ lọc</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: QUẢN LÝ TÀI KHOẢN ==================== -->
+            <section class="view" id="view-account" data-view="account">
+                <div class="stats stats--4">
+                    <div class="stat">
+                        <span class="stat__label">TỔNG TÀI KHOẢN</span>
+                        <b class="stat__value" id="acTotal">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">ĐANG ONLINE</span>
+                        <b class="stat__value" id="acOnline">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">ĐANG BỊ KHOÁ</span>
+                        <b class="stat__value" id="acBanned">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">CÓ QUYỀN QUẢN TRỊ</span>
+                        <b class="stat__value" id="acAdmin">0</b>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">DANH SÁCH TÀI KHOẢN</h2>
+                        <div class="card__toolbar-actions">
+                            <input type="search" id="accountSearch" class="player-search"
+                                   placeholder="Tìm theo username..." autocomplete="off">
+                            <select id="accountFilter" class="player-filter"></select>
+                            <button class="btn" type="button" id="accountReload">Tải Lại</button>
+                            <button class="btn btn--primary" type="button" id="accountAdd">Tạo Tài Khoản</button>
+                        </div>
+                    </div>
+
+                    <p class="field__hint table-hint">
+                        Game so sánh mật khẩu bằng chuỗi thô (<b>where username = ? and password = ?</b>),
+                        nên mật khẩu trong database là văn bản thường — hãy cẩn thận khi xem/sửa.
+                    </p>
+
+                    <div class="table-wrap">
+                        <table class="table table--account">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tài Khoản</th>
+                                    <th>Quyền</th>
+                                    <th>Nhân Vật</th>
+                                    <th>Tổng Nạp</th>
+                                    <th>Ví</th>
+                                    <th>Trạng Thái</th>
+                                    <th>IP</th>
+                                    <th>Đăng Nhập Cuối</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="accountBody"></tbody>
+                        </table>
+                        <div class="table-empty" id="accountEmpty" hidden>Không có tài khoản nào khớp bộ lọc</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: CẤU HÌNH NẠP TIỀN ==================== -->
+            <section class="view" id="view-payment" data-view="payment">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title">CẤU HÌNH NẠP TIỀN CHO JAVA PANEL — CHỈ LƯU TRỮ</h2>
+                        <span class="card__hint" id="payFilePath">đang đọc…</span>
+                    </div>
+                    <div class="card__body">
+                        <p class="field__hint table-hint">
+                            Các khoá thẻ cào, PayOS và ngân hàng chỉ được lưu trong cấu hình Java panel.
+                            Chưa kết nối consumer thanh toán; lưu thành công không tạo giao dịch,
+                            không xử lý callback và không tự cộng tiền cho tài khoản.
+                        </p>
+
+                        <div id="payGroups"></div>
+
+                        <div class="form-actions">
+                            <span class="form-actions__status" id="payStatus">Chưa có thay đổi</span>
+                            <div class="form-actions__buttons">
+                                <button class="btn btn--ghost" type="button" id="payReload">Tải Lại</button>
+                                <button class="btn btn--primary" type="button" id="paySave">Lưu Cấu Hình Nạp Tiền</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__body">
+                        <h3 class="note__title">Phạm vi cấu hình thanh toán</h3>
+                        <ul class="note__list">
+                            <li>Lưu trữ và sao lưu trên máy chủ Java; không sửa PHP hoặc website ngoài workspace.</li>
+                            <li>Khoá bí mật được trả về dạng che; để trống hoặc giữ giá trị che sẽ không xoá khoá đã lưu.</li>
+                            <li>Chỉ ghi nhận doanh thu theo ngày khi backend có nguồn giao dịch và quy ước trạng thái thành công xác thực. Thiếu nguồn không có nghĩa là doanh thu bằng 0.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== VIEW: QUẢN LÝ DNS CLOUDFLARE ==================== -->
+            <section class="view" id="view-cloudflare" data-view="cloudflare">
+                <div class="stats stats--4">
+                    <div class="stat">
+                        <span class="stat__label">TRẠNG THÁI</span>
+                        <b class="stat__value" id="cfState">—</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">ZONE ĐANG QUẢN LÝ</span>
+                        <b class="stat__value" id="cfZone">—</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">TỔNG BẢN GHI</span>
+                        <b class="stat__value" id="cfTotal">0</b>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__label">ĐANG QUA CLOUDFLARE</span>
+                        <b class="stat__value" id="cfProxied">0</b>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title">KẾT NỐI CLOUDFLARE</h2>
+                        <span class="card__hint" id="cfStorage">—</span>
+                    </div>
+                    <div class="card__body">
+                        <p class="field__hint table-hint">
+                            Panel lưu <b>API Token</b> của bạn vào <code>web/data/cloudflare.json</code> và gọi
+                            thẳng Cloudflare API v4. Token nên là loại quyền tối thiểu:
+                            <b>Zone → DNS → Edit</b> và <b>Zone → Zone → Read</b>.
+                        </p>
+                        <div class="grid grid--2">
+                            <div class="field">
+                                <label for="cfToken">API TOKEN (để trống = giữ token cũ)</label>
+                                <input type="password" id="cfToken" placeholder="dán token vào đây"
+                                       autocomplete="off" spellcheck="false">
+                            </div>
+                            <div class="field">
+                                <label for="cfZoneSelect">ZONE (TÊN MIỀN)</label>
+                                <select id="cfZoneSelect"></select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <span class="form-actions__status" id="cfStatus">Chưa kết nối</span>
+                            <div class="form-actions__buttons">
+                                <button class="btn btn--ghost" type="button" id="cfForget">Quên Token</button>
+                                <button class="btn" type="button" id="cfUseZone">Dùng Zone Này</button>
+                                <button class="btn btn--primary" type="button" id="cfSaveToken">Lưu Token</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">BẢN GHI DNS</h2>
+                        <div class="card__toolbar-actions">
+                            <input type="search" id="cfSearch" class="player-search"
+                                   placeholder="Tìm theo tên hoặc giá trị..." autocomplete="off">
+                            <select id="cfTypeFilter" class="player-filter"></select>
+                            <button class="btn" type="button" id="cfReload">Tải Lại</button>
+                            <button class="btn" type="button" id="cfPurge">Xoá Cache</button>
+                            <button class="btn btn--primary" type="button" id="cfAdd">Thêm Bản Ghi</button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="table table--dns">
+                            <thead>
+                                <tr>
+                                    <th>Loại</th>
+                                    <th>Tên</th>
+                                    <th>Giá Trị</th>
+                                    <th>TTL</th>
+                                    <th>Proxy</th>
+                                    <th>Ưu Tiên</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cfBody"></tbody>
+                        </table>
+                        <div class="table-empty" id="cfEmpty" hidden>Chưa có bản ghi nào</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Các view khác được render tự động bởi js/panel.js -->
+            <section class="view" id="view-lucky-round" data-view="lucky-round">
+                <div class="card">
+                    <div class="card__toolbar">
+                        <h2 class="card__title-lg">VÒNG QUAY THƯỢNG ĐẾ</h2>
+                        <div class="card__toolbar-actions">
+                            <button class="btn" id="lqReload" type="button">Tải lại</button>
+                            <button class="btn btn--primary" id="lqSave" type="button" disabled>Lưu &amp; áp dụng</button>
+                        </div>
+                    </div>
+                    <div class="card__body"><p id="lqStatus" role="status">Đang tải cấu hình…</p><p class="field__hint" id="lqNotes"></p><div id="lqWarnings" class="lq-warnings" role="status" hidden></div></div>
+                </div>
+                <div id="lqEditor" hidden>
+                    <div class="card"><div class="card__head"><h3>Chi phí và tỷ lệ quay</h3></div><div class="card__body">
+                        <div class="grid grid--3" id="lqFields"></div>
+                        <div class="lq-price" id="lqPrice"></div><div class="lq-rates" id="lqRates"></div>
+                    </div></div>
+                    <div class="card"><div class="card__head"><h3>Tìm &amp; thêm vật phẩm</h3></div><div class="card__body">
+                        <div class="grid grid--2"><div class="field"><label for="lqTarget">THÊM VÀO</label><select id="lqTarget"></select></div>
+                        <div class="field"><label for="lqSearch">TÌM TÊN HOẶC ID VẬT PHẨM</label><input id="lqSearch" type="search" placeholder="Ví dụ: vé quay, đá ngũ sắc, 674…" autocomplete="off"></div></div>
+                        <div class="lq-search-results" id="lqResults" aria-live="polite"></div>
+                    </div></div>
+                    <div class="card"><div class="card__head"><h3>Nhóm quà vòng quay</h3></div><div class="card__body lq-groups" id="lqGroups"></div></div>
+                    <div class="card"><div class="card__head"><h3>Mốc tích lũy lượt quay</h3></div><div class="card__body" id="lqMilestones"></div></div>
+                </div>
+            </section>
+
+            <section class="view" id="view-donate-package" data-view="donate-package">
+                <div class="card">
+                    <div class="card__toolbar"><h2 class="card__title-lg">QUẢN LÝ GÓI DONATE</h2><div class="card__toolbar-actions"><button class="btn" type="button" id="dpReload">Tải lại</button><button class="btn btn--primary" type="button" id="dpCreate" disabled>Thêm gói donate</button></div></div>
+                    <div class="card__body"><p class="field__hint" id="dpNotes"></p><p id="dpStatus" role="status">Đang tải gói donate…</p><div class="dp-filters"><input type="search" id="dpFilter" placeholder="Tìm tên hoặc ID gói…" aria-label="Tìm gói donate"><select id="dpActiveFilter" aria-label="Lọc trạng thái gói"><option value="all">Tất cả trạng thái</option><option value="on">Đang bán</option><option value="off">Đã tắt</option></select></div></div>
+                    <div class="table-wrap"><table class="table"><thead><tr><th>ID / Thứ tự</th><th>Gói donate</th><th>Giá VNĐ</th><th>Phần thưởng</th><th>Đã mua</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody id="dpRows"></tbody></table></div><div class="table-empty" id="dpEmpty" hidden>Chưa có gói donate</div>
+                </div>
+            </section>
+
+            <section class="view" id="view-database-reset" data-view="database-reset">
+                <div class="card">
+                    <div class="card__toolbar"><h2 class="card__title-lg">RESET DỮ LIỆU GAME</h2><button class="btn" type="button" id="dbResetReload">Tải lại số liệu</button></div>
+                    <div class="card__body">
+                        <p>Xóa toàn bộ tài khoản game, nhân vật và bang hội, bao gồm tài khoản admin trong game. Dữ liệu phúc lợi riêng của nhân vật cũng được xóa nếu có bảng lưu.</p>
+                        <p>Thao tác không thể hoàn tác từ panel. Sau khi reset thành công, cần khởi động lại server trước khi mở game.</p>
+                        <p class="field__hint">Đăng nhập panel được giữ lại. Dữ liệu mẫu vật phẩm, map, shop và cấu hình game được giữ nguyên.</p>
+                        <p id="dbResetStatus" role="status">Đang tải số liệu…</p>
+                        <div id="dbResetPreview" hidden>
+                            <p>Database: <b id="dbResetDatabase"></b></p>
+                            <div class="table-wrap"><table class="table"><thead><tr><th>Bảng sẽ xóa</th><th>Số dòng</th></tr></thead><tbody id="dbResetRows"></tbody></table></div>
+                            <div class="db-reset-blockers" id="dbResetBlockers" role="status" hidden></div>
+                            <p class="field__hint">Không được còn người chơi/bot hoặc phiên game đã xác thực. Ngắt toàn bộ tại mục Máy Chủ Trực Tuyến rồi tải lại số liệu ở đây.</p>
+                            <form id="dbResetForm" autocomplete="off">
+                                <div class="field"><label for="dbResetConfirmation">Nhập chính xác <b id="dbResetPhrase">RESET ACCOUNT PLAYER CLAN</b></label><input id="dbResetConfirmation" type="text" spellcheck="false" autocomplete="off" placeholder="RESET ACCOUNT PLAYER CLAN"></div>
+                                <p class="field__hint" id="dbResetExpiry"></p>
+                                <button class="btn btn--danger" id="dbResetSubmit" type="submit" disabled>Xóa toàn bộ account, player và clan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="view" id="view-placeholder" data-view="placeholder">
+                <div class="card placeholder">
+                    <div class="placeholder__icon">🚧</div>
+                    <h2 id="placeholderTitle">Chức năng đang phát triển</h2>
+                    <p id="placeholderDesc">Khung giao diện đã sẵn sàng — phần chức năng sẽ được bổ sung theo từng task.</p>
+                    <code id="placeholderKey">page-key</code>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODAL: TẠO / SỬA GIFTCODE ==================== -->
+<div class="modal" id="giftcodeModal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel">
+        <div class="modal__head">
+            <h3 id="giftcodeModalTitle">Tạo Giftcode Mới</h3>
+            <button class="modal__close" type="button" data-close title="Đóng">&times;</button>
+        </div>
+        <form class="modal__body" id="giftcodeForm" autocomplete="off">
+            <input type="hidden" id="gcId">
+
+            <div class="grid grid--2">
+                <div class="field">
+                    <label for="gcCode" id="gcCodeLabel">MÃ CODE</label>
+                    <input type="text" id="gcCode" placeholder="Ví dụ: tanthu" required>
+                </div>
+            </div>
+
+            <div class="grid grid--2">
+                <div class="field">
+                    <label for="gcCount">SỐ LƯỢT</label>
+                    <input type="number" id="gcCount" min="0" value="100">
+                </div>
+                <div class="field">
+                    <label for="gcExpired">HẠN SỬ DỤNG</label>
+                    <input type="datetime-local" id="gcExpired">
+                </div>
+            </div>
+
+            <p class="field__hint" id="gcBatchHint" hidden>Tạo 50 mã ngẫu nhiên khác nhau, cùng quà và hạn sử dụng. Mỗi mã chỉ đổi được 1 lần tổng cộng trên toàn máy chủ. Nếu không chọn hạn sử dụng, mã có hiệu lực 30 ngày.</p>
+
+            <div class="field">
+                <label>CHI TIẾT QUÀ TẶNG</label>
+                <button class="picker__open" type="button" id="itemPickOpen">Bấm để chọn vật phẩm</button>
+                <div class="gc-items" id="gcItems"></div>
+                <button class="btn btn--ghost" type="button" id="btnAddGcItem">+ Thêm quà theo ID</button>
+            </div>
+            <p class="field__hint">Mỗi món quà có option riêng. Bấm <b>Option</b> trên dòng quà để chỉnh; nguồn hiện tại không có cột phân loại hay option chung.</p>
+
+            <div class="modal__actions">
+                <button class="btn btn--ghost" type="button" data-close>Huỷ</button>
+                <button class="btn btn--primary" type="submit" id="btnSaveGiftcode">Lưu Giftcode</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ==================== MODAL: DANH SÁCH GIFTCODE VỪA TẠO ==================== -->
+<div class="modal" id="giftcodeBatchResult" hidden>
+    <div class="modal__backdrop" data-batch-close></div>
+    <div class="modal__panel">
+        <div class="modal__head">
+            <h3>Đã tạo 50 giftcode dùng 1 lần</h3>
+            <button class="modal__close" type="button" data-batch-close title="Đóng">&times;</button>
+        </div>
+        <div class="modal__body">
+            <p>Mỗi mã dùng 1 lần tổng cộng. Các mã đã sẵn sàng để nhận trong game.</p>
+            <div class="field">
+                <label for="gcBatchCodes">DANH SÁCH 50 MÃ</label>
+                <textarea id="gcBatchCodes" rows="12" readonly spellcheck="false"></textarea>
+            </div>
+            <div class="modal__actions">
+                <button class="btn" type="button" id="gcBatchCopy">Sao chép</button>
+                <button class="btn btn--primary" type="button" id="gcBatchDownload">Tải danh sách .txt</button>
+                <button class="btn btn--ghost" type="button" data-batch-close>Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODAL: THÊM / SỬA SHOP NPC ==================== -->
+<div class="modal" id="shopModal" hidden>
+    <div class="modal__backdrop" data-shop-close></div>
+    <div class="modal__panel">
+        <div class="modal__head">
+            <h3 id="shopModalTitle">Thêm Shop NPC</h3>
+            <button class="modal__close" type="button" data-shop-close title="Đóng">&times;</button>
+        </div>
+        <form class="modal__body" id="shopForm" autocomplete="off">
+            <input type="hidden" id="shopId">
+
+            <div class="field">
+                <label for="shopNpc">NPC SỞ HỮU SHOP</label>
+                <select id="shopNpc"></select>
+            </div>
+
+            <div class="grid grid--2">
+                <div class="field">
+                    <label for="shopTag">TAG NAME</label>
+                    <input type="text" id="shopTag" placeholder="Ví dụ: BUNMA" maxlength="50" required>
+                </div>
+                <div class="field">
+                    <label for="shopType">LOẠI SHOP</label>
+                    <select id="shopType"></select>
+                </div>
+            </div>
+
+            <div class="modal__actions">
+                <button class="btn btn--ghost" type="button" data-shop-close>Huỷ</button>
+                <button class="btn btn--primary" type="submit">Lưu Shop</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ==================== MODAL: THÊM / ĐỔI TÊN TAB SHOP ==================== -->
+<div class="modal" id="shopTabModal" hidden>
+    <div class="modal__backdrop" data-tab-close></div>
+    <div class="modal__panel">
+        <div class="modal__head">
+            <h3 id="shopTabModalTitle">Thêm Tab</h3>
+            <button class="modal__close" type="button" data-tab-close title="Đóng">&times;</button>
+        </div>
+        <form class="modal__body" id="shopTabForm" autocomplete="off">
+            <input type="hidden" id="shopTabId">
+            <div class="field">
+                <label for="shopTabName">TÊN TAB (mỗi dòng là một dòng chữ trong game)</label>
+                <textarea id="shopTabName" rows="3" placeholder="Sách&#10;Vỏ" required></textarea>
+            </div>
+            <div class="modal__actions">
+                <button class="btn btn--ghost" type="button" data-tab-close>Huỷ</button>
+                <button class="btn btn--primary" type="submit">Lưu Tab</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ==================== MODAL: THÊM / SỬA VẬT PHẨM SHOP ==================== -->
+<div class="modal" id="shopItemModal" hidden>
+    <div class="modal__backdrop" data-item-close></div>
+    <div class="modal__panel modal__panel--wide">
+        <div class="modal__head">
+            <h3 id="shopItemModalTitle">Thêm Vật Phẩm</h3>
+            <button class="modal__close" type="button" data-item-close title="Đóng">&times;</button>
+        </div>
+        <form class="modal__body" id="shopItemForm" autocomplete="off">
+            <input type="hidden" id="shopItemId">
+            <input type="hidden" id="shopItemTabId">
+            <input type="hidden" id="shopItemVersion">
+
+            <div class="field">
+                <label>VẬT PHẨM (MÃ TEMPLATE)</label>
+                <div class="shop-pick">
+                    <input type="number" id="shopItemTemp" placeholder="ID vật phẩm" required>
+                    <span class="shop-pick__thumb" id="shopItemTempIcon"></span>
+                    <span class="shop-pick__name" id="shopItemTempName">Chưa chọn vật phẩm</span>
+                    <button class="btn-mini" type="button" id="shopItemTempPick">Chọn từ bảng</button>
+                </div>
+            </div>
+
+            <div class="grid grid--2">
+                <div class="field">
+                    <label for="shopItemCost">GIÁ BÁN</label>
+                    <input type="number" id="shopItemCost" min="0" value="0">
+                </div>
+            </div>
+
+            <div class="grid grid--2">
+                <div class="field">
+                    <label for="shopItemTypeSell">LOẠI TIỀN</label>
+                    <select id="shopItemTypeSell"></select>
+                </div>
+                <div class="field">
+                    <label for="shopItemIconSpec">ICON BỔ SUNG (icon_spec)</label>
+                    <div class="shop-pick">
+                        <input type="number" id="shopItemIconSpec" min="0" value="0">
+                        <span class="shop-pick__thumb" id="shopItemSpecIcon"></span>
+                        <span class="shop-pick__name" id="shopItemSpecName"></span>
+                        <button class="btn-mini" type="button" id="shopItemSpecPick">Chọn theo vật phẩm</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid--2">
+                <label class="check"><input type="checkbox" id="shopItemNew"> ĐÁNH DẤU "MỚI" TRONG SHOP</label>
+                <label class="check"><input type="checkbox" id="shopItemSell" checked> ĐANG BÁN (is_sell)</label>
+            </div>
+
+            <div class="field">
+                <label>CHỈ SỐ OPTIONS</label>
+                <div class="gc-items" id="shopItemOptions"></div>
+                <div class="gc-item__add">
+                    <input type="number" class="gc-opt-id" id="shopOptId" placeholder="ID option">
+                    <input type="number" class="gc-opt-param" id="shopOptParam" placeholder="Param" value="0">
+                    <button class="btn-mini" type="button" id="shopOptAdd">+ Thêm</button>
+                    <button class="btn-mini" type="button" id="shopOptPick">Chọn từ bảng</button>
+                </div>
+            </div>
+
+            <div class="modal__actions">
+                <button class="btn btn--ghost" type="button" data-item-close>Huỷ</button>
+                <button class="btn btn--primary" type="submit">Lưu Vật Phẩm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ==================== MODAL: CHỈNH SỬA NHÂN VẬT ==================== -->
+<div class="modal" id="playerModal" hidden>
+    <div class="modal__backdrop" data-player-close></div>
+    <div class="modal__panel modal__panel--wide player-modal">
+        <div class="modal__head">
+            <h3 id="playerModalTitle">CHỈNH SỬA NHÂN VẬT</h3>
+            <span class="player-modal__state" id="playerModalState"></span>
+            <button class="modal__close" type="button" data-player-close title="Đóng">&times;</button>
+        </div>
+
+        <div class="tabs tabs--flat player-modal__tabs" id="playerTabs">
+            <button class="tab is-active" type="button" data-player-tab="basic">Nhân Vật</button>
+            <button class="tab" type="button" data-player-tab="pet">Đệ Tử</button>
+            <button class="tab" type="button" data-player-tab="advanced">Nâng Cao</button>
+            <button class="tab" type="button" data-player-tab="task">Nhiệm Vụ Mở Rộng</button>
+        </div>
+
+        <div class="modal__body">
+
+            <!-- ================= Tab: Nhân Vật ================= -->
+            <div class="tabpane is-active" data-player-pane="basic">
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">THÔNG TIN CƠ BẢN</h2>
+                        <span class="card__hint" id="pbAccount">—</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="pbName">TÊN NHÂN VẬT</label>
+                                <input type="text" id="pbName" maxlength="20" autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label for="pbGender">HỆ</label>
+                                <select id="pbGender"></select>
+                            </div>
+                            <div class="field">
+                                <label for="pbHead">HEAD (KIỂU ĐẦU)</label>
+                                <input type="number" id="pbHead" min="0" max="200">
+                            </div>
+                        </div>
+                        <div class="grid grid--2">
+                            <div class="field">
+                                RANK (chỉ lưu DB, loader hiện không dùng)</label>
+                                <input type="number" id="pbRank" min="0">
+                            </div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="pbSave">Lưu Thông Tin</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">CHỈ SỐ NHÂN VẬT</h2>
+                        <span class="card__hint" id="ppHint">DATA_POINT</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="player-grid player-grid--3" id="ppFields"></div>
+                        <div class="modal__actions">
+                            <button class="btn btn--warning" type="button" id="ppMax">Đặt Chỉ Số Tối Đa</button>
+                            <button class="btn btn--primary" type="button" id="ppSave">Lưu Chỉ Số</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">TIỀN TỆ TRONG HÀNH TRANG</h2>
+                        <span class="card__hint">DATA_INVENTORY</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="pmGold">VÀNG</label>
+                                <input type="number" id="pmGold" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="pmGem">NGỌC XANH</label>
+                                <input type="number" id="pmGem" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="pmRuby">HỒNG NGỌC</label>
+                                <input type="number" id="pmRuby" min="0">
+                            </div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="pmSave">Lưu Tiền Tệ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">VỊ TRÍ &amp; ĐẬU THẦN</h2>
+                        <span class="card__hint">DATA_LOCATION · DATA_MAGIC_TREE</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="plMap">MAP</label>
+                                <input type="number" id="plMap" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="plX">TOẠ ĐỘ X</label>
+                                <input type="number" id="plX" min="0" max="3000">
+                            </div>
+                            <div class="field">
+                                <label for="plY">TOẠ ĐỘ Y</label>
+                                <input type="number" id="plY" min="0" max="3000">
+                            </div>
+                        </div>
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="ptLevel">ĐẬU THẦN CẤP</label>
+                                <input type="number" id="ptLevel" min="0" max="127">
+                            </div>
+                            <div class="field">
+                                <label for="ptPeas">SỐ ĐẬU</label>
+                                <input type="number" id="ptPeas" min="0" max="127">
+                            </div>
+                            <div class="field">
+                                <label for="ptUpgrading">ĐANG NÂNG CẤP</label>
+                                <select id="ptUpgrading">
+                                    <option value="0">Không</option>
+                                    <option value="1">Có</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn" type="button" id="plSave">Lưu Vị Trí</button>
+                            <button class="btn btn--primary" type="button" id="ptSave">Lưu Đậu Thần</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ================= Tab: Đệ Tử ================= -->
+            <div class="tabpane" data-player-pane="pet">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">ĐỆ TỬ</h2>
+                        <span class="card__hint" id="petState">—</span>
+                    </div>
+                    <div class="card__body">
+                        <p class="muted" id="petNone" hidden>
+                            Nhân vật này chưa có đệ tử (cột <b>pet</b> = "[]").
+                        </p>
+
+                        <div id="petBox" hidden>
+                            <div class="kv" id="petInfo"></div>
+
+                            <div class="grid grid--3">
+                                <div class="field">
+                                    <label for="petName">TÊN ĐỆ TỬ</label>
+                                    <input type="text" id="petName" maxlength="20" autocomplete="off">
+                                </div>
+                                <div class="field">
+                                    <label for="petType">TYPE ĐỆ TỬ</label>
+                                    <input type="number" id="petType" min="0">
+                                </div>
+                                <div class="field">
+                                    <label for="petStatus">TRẠNG THÁI</label>
+                                    <input type="number" id="petStatus" min="0">
+                                </div>
+                            </div>
+                            <div class="grid grid--2">
+                                <div class="field">
+                                    <label for="petLimitPower">GIỚI HẠN SỨC MẠNH</label>
+                                    <input type="number" id="petLimitPower" min="0" max="127">
+                                </div>
+                            </div>
+
+                            <p class="field__hint">Chỉ số đệ tử (petPoint) — sửa xong nhấn “Lưu Đệ Tử”.</p>
+                            <div class="player-grid player-grid--3" id="petFields"></div>
+
+                            <div class="modal__actions">
+                                <button class="btn btn--danger" type="button" id="petDelete">Xóa Đệ Tử</button>
+                                <button class="btn btn--primary" type="button" id="petSave">Lưu Đệ Tử</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= Tab: Nâng Cao ================= -->
+            <div class="tabpane" data-player-pane="advanced">
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">KỸ NĂNG NỘI TẠI</h2>
+                        <span class="card__hint">DATA_INTRINSIC</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="piId">NỘI TẠI ĐANG MANG</label>
+                                <select id="piId"></select>
+                            </div>
+                            <div class="field">
+                                <label for="piParam1">THAM SỐ 1</label>
+                                <input type="number" id="piParam1" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="piParam2">THAM SỐ 2</label>
+                                <input type="number" id="piParam2" min="0">
+                            </div>
+                        </div>
+                        <div class="grid grid--2">
+                            <div class="field">
+                                <label for="piCountOpen">SỐ LẦN ĐÃ MỞ</label>
+                                <input type="number" id="piCountOpen" min="0" max="127">
+                            </div>
+                        </div>
+                        <p class="field__hint" id="piHint">—</p>
+                        <div class="modal__actions">
+                            <button class="btn btn--warning" type="button" id="piMax">Đặt Chỉ Số Tối Đa</button>
+                            <button class="btn btn--ghost" type="button" id="piCooldown">Xóa Hiệu Ứng Cooldown</button>
+                            <button class="btn btn--danger" type="button" id="piClear">Xóa Nội Tại</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">KỸ NĂNG ĐÃ HỌC</h2>
+                        <span class="card__hint" id="pskHint">SKILLS</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="table-wrap">
+                            <table class="table table--mini">
+                                <thead>
+                                    <tr>
+                                        <th>Kỹ Năng</th>
+                                        <th>Điểm</th>
+                                        <th>Cấp</th>
+                                        <th>Dùng Lần Cuối</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pskBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="pskEmpty" hidden>Nhân vật chưa học kỹ năng nào</div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="pskSave">Lưu Kỹ Năng</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">KỸ NĂNG DÙNG NHANH</h2>
+                        <span class="card__hint">SKILLS_SHORTCUT - ĐÚNG 10 Ô</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="player-grid player-grid--3" id="pcShortcut"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">BÙA ĐANG DÙNG</h2>
+                        <span class="card__hint">DATA_CHARM - THỜI GIAN HẾT HẠN (MILLISECONDS)</span>
+                    </div>
+                    <div class="card__body">
+                        <p class="field__hint" id="pcCount">—</p>
+                        <p class="field__hint">Sửa ngày giờ hoặc xóa, sau đó nhấn “Lưu Dữ Liệu Nâng Cao”.</p>
+                        <div class="charms" id="pcList"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">JSON THÔ</h2>
+                        <span class="card__hint">CHỈ SỬA KHI BIẾT MÌNH ĐANG LÀM GÌ</span>
+                    </div>
+                    <div class="card__body">
+                        <button class="btn btn--ghost btn--block" type="button" id="prToggle">▶ Xem / sửa JSON thô</button>
+                        <div id="prBox" hidden>
+                            <div class="field">
+                                <label for="prColumn">CỘT DỮ LIỆU</label>
+                                <select id="prColumn"></select>
+                            </div>
+                            <div class="field">
+                                <label for="prValue">NỘI DUNG JSON</label>
+                                <textarea id="prValue" rows="6" spellcheck="false"></textarea>
+                            </div>
+                            <p class="field__hint">Nội dung sai định dạng JSON sẽ bị từ chối, database không bị thay đổi.</p>
+                            <div class="modal__actions">
+                                <button class="btn btn--primary" type="button" id="prSave">Lưu JSON</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn--primary btn--block player-save" type="button" id="pAdvSave">
+                    Lưu Dữ Liệu Nâng Cao
+                </button>
+            </div>
+
+            <!-- ================= Tab: Nhiệm Vụ Mở Rộng ================= -->
+            <div class="tabpane" data-player-pane="task">
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">NHIỆM VỤ CHÍNH</h2>
+                        <span class="card__hint">DATA_TASK</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--2">
+                            <div class="field">
+                                <label for="ptnTask">NHIỆM VỤ ĐANG LÀM</label>
+                                <select id="ptnTask"></select>
+                            </div>
+                            <div class="field">
+                                <label for="ptnIndex">BƯỚC (INDEX)</label>
+                                <input type="number" id="ptnIndex" min="0" max="127">
+                            </div>
+                        </div>
+                        <div class="grid grid--2">
+                            <div class="field">
+                                <label for="ptnCount">SỐ LƯỢNG ĐÃ LÀM</label>
+                                <input type="number" id="ptnCount" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="ptnTime">LẦN CẬP NHẬT CUỐI</label>
+                                <input type="datetime-local" id="ptnTime">
+                            </div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="ptnSave">Lưu Nhiệm Vụ Chính</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">NHIỆM VỤ HÀNG NGÀY</h2>
+                        <span class="card__hint">DATA_SIDE_TASK</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="pstTask">MẪU NHIỆM VỤ</label>
+                                <select id="pstTask"></select>
+                            </div>
+                            <div class="field">
+                                <label for="pstLevel">CẤP NHIỆM VỤ (1-5)</label>
+                                <input type="number" id="pstLevel" min="1" max="5">
+                            </div>
+                            <div class="field">
+                                <label for="pstReceived">NHẬN LÚC</label>
+                                <input type="datetime-local" id="pstReceived">
+                            </div>
+                        </div>
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="pstCount">ĐÃ LÀM</label>
+                                <input type="number" id="pstCount" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="pstMax">TỐI ĐA</label>
+                                <input type="number" id="pstMax" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="pstLeft">SỐ LẦN CÒN LẠI</label>
+                                <input type="number" id="pstLeft" min="0">
+                            </div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="pstSave">Lưu Nhiệm Vụ Hàng Ngày</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">NHIỆM VỤ BANG</h2>
+                        <span class="card__hint">DATA_CLAN_TASK</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="ptcTask">MẪU NHIỆM VỤ</label>
+                                <select id="ptcTask"></select>
+                            </div>
+                            <div class="field">
+                                <label for="ptcLevel">CẤP NHIỆM VỤ (1-5)</label>
+                                <input type="number" id="ptcLevel" min="1" max="5">
+                            </div>
+                            <div class="field">
+                                <label for="ptcReceived">NHẬN LÚC</label>
+                                <input type="datetime-local" id="ptcReceived">
+                            </div>
+                        </div>
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="ptcCount">ĐÃ LÀM</label>
+                                <input type="number" id="ptcCount" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="ptcMax">TỐI ĐA</label>
+                                <input type="number" id="ptcMax" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="ptcLeft">SỐ LẦN CÒN LẠI</label>
+                                <input type="number" id="ptcLeft" min="0">
+                            </div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="ptcSave">Lưu Nhiệm Vụ Bang</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODAL: SỬA BẢN ĐỒ ==================== -->
+<div class="modal" id="mapModal" hidden>
+    <div class="modal__backdrop" data-map-close></div>
+    <div class="modal__panel modal__panel--wide player-modal">
+        <div class="modal__head">
+            <h3 id="mapModalTitle">SỬA BẢN ĐỒ</h3>
+            <span class="player-modal__state" id="mapModalState"></span>
+            <button class="modal__close" type="button" data-map-close title="Đóng">&times;</button>
+        </div>
+
+        <div class="tabs tabs--flat player-modal__tabs" id="mapTabs">
+            <button class="tab is-active" type="button" data-map-tab="info">Thông Tin</button>
+            <button class="tab" type="button" data-map-tab="mobs">Quái <span id="mapTabMobCount"></span></button>
+            <button class="tab" type="button" data-map-tab="npcs">NPC <span id="mapTabNpcCount"></span></button>
+            <button class="tab" type="button" data-map-tab="waypoints">Cổng Dịch Chuyển <span id="mapTabWpCount"></span></button>
+        </div>
+
+        <div class="modal__body">
+
+            <div class="tabpane is-active" data-map-pane="info">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">THÔNG TIN BẢN ĐỒ</h2>
+                        <span class="card__hint">MAP_TEMPLATE</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="mfName">TÊN BẢN ĐỒ</label>
+                                <input type="text" id="mfName" maxlength="40" autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label for="mfType">LOẠI BẢN ĐỒ</label>
+                                <select id="mfType"></select>
+                            </div>
+                            <div class="field">
+                                <label for="mfPlanet">HÀNH TINH</label>
+                                <select id="mfPlanet"></select>
+                            </div>
+                        </div>
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="mfZones">SỐ KHU (ZONES)</label>
+                                <input type="number" id="mfZones" min="1" max="120">
+                            </div>
+                            <div class="field">
+                                <label for="mfMaxPlayer">NGƯỜI TỐI ĐA / KHU</label>
+                                <input type="number" id="mfMaxPlayer" min="1" max="120">
+                            </div>
+                            <div class="field">
+                                <label for="mfGender">GIỚI HẠN HỆ</label>
+                                <select id="mfGender"></select>
+                            </div>
+                        </div>
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="mfBgType">BG TYPE</label>
+                                <input type="number" id="mfBgType" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="mfTileId">TILE ID</label>
+                                <input type="number" id="mfTileId" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="mfBgId">BG ID</label>
+                                <input type="number" id="mfBgId" min="0">
+                            </div>
+                        </div>
+                        <p class="field__hint" id="mfData">—</p>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="mfSave">Lưu Thông Tin</button>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="field__hint">
+                    Bản đồ trong game chỉ nhận dữ liệu mới sau khi <b>khởi động lại server</b>
+                    (bấm “Nạp Lại Server” ở danh sách để client mới đăng nhập nhận map mới).
+                </p>
+            </div>
+
+            <div class="tabpane" data-map-pane="mobs">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">QUÁI TRÊN BẢN ĐỒ</h2>
+                        <span class="card__hint">MOBS · [tempId, level, hp, x, y]</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="table-wrap spawn-wrap">
+                            <table class="table table--mini table--spawn">
+                                <thead>
+                                    <tr>
+                                        <th>Mẫu Quái</th>
+                                        <th>Level</th>
+                                        <th>HP</th>
+                                        <th>X</th>
+                                        <th>Y</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mapMobBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="mapMobEmpty" hidden>Bản đồ này chưa đặt quái nào</div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn" type="button" id="mapMobAdd">+ Thêm Quái</button>
+                            <button class="btn btn--primary" type="button" id="mapMobSave">Lưu Danh Sách Quái</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabpane" data-map-pane="npcs">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">NPC TRÊN BẢN ĐỒ</h2>
+                        <span class="card__hint">NPCS · [npcId, x, y]</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="table-wrap spawn-wrap">
+                            <table class="table table--mini table--spawn">
+                                <thead>
+                                    <tr>
+                                        <th>NPC</th>
+                                        <th>X</th>
+                                        <th>Y</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mapNpcBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="mapNpcEmpty" hidden>Bản đồ này chưa đặt NPC nào</div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn" type="button" id="mapNpcAdd">+ Thêm NPC</button>
+                            <button class="btn btn--primary" type="button" id="mapNpcSave">Lưu Danh Sách NPC</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabpane" data-map-pane="waypoints">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">CỔNG DỊCH CHUYỂN</h2>
+                        <span class="card__hint">WAYPOINTS · [tên, minX, minY, maxX, maxY, vào, offline, goMap, goX, goY]</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="table-wrap spawn-wrap">
+                            <table class="table table--mini table--spawn table--waypoint">
+                                <thead>
+                                    <tr>
+                                        <th>Tên Cổng</th>
+                                        <th>Min X</th>
+                                        <th>Min Y</th>
+                                        <th>Max X</th>
+                                        <th>Max Y</th>
+                                        <th>Vào</th>
+                                        <th>Offline</th>
+                                        <th>Đến Bản Đồ</th>
+                                        <th>Go X</th>
+                                        <th>Go Y</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mapWpBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="mapWpEmpty" hidden>Bản đồ này chưa có cổng dịch chuyển nào</div>
+                        </div>
+                        <p class="field__hint">
+                            Tên cổng không được chứa <b>" \ [ ]</b> vì cách nạp dữ liệu của game sẽ làm hỏng cột waypoints.
+                        </p>
+                        <div class="modal__actions">
+                            <button class="btn" type="button" id="mapWpAdd">+ Thêm Cổng</button>
+                            <button class="btn btn--primary" type="button" id="mapWpSave">Lưu Cổng Dịch Chuyển</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODAL: SỬA MẪU QUÁI ==================== -->
+<div class="modal" id="mobModal" hidden>
+    <div class="modal__backdrop" data-mob-close></div>
+    <div class="modal__panel modal__panel--wide">
+        <div class="modal__head">
+            <h3 id="mobModalTitle">SỬA MẪU QUÁI</h3>
+            <span class="player-modal__state" id="mobModalState"></span>
+            <button class="modal__close" type="button" data-mob-close title="Đóng">&times;</button>
+        </div>
+        <div class="modal__body">
+            <div class="card">
+                <div class="card__head">
+                    <h2 class="card__title-lg">THÔNG SỐ MẪU QUÁI</h2>
+                    <span class="card__hint">MOB_TEMPLATE</span>
+                </div>
+                <div class="card__body">
+                    <div class="grid grid--3">
+                        <div class="field">
+                            <label for="mbfName">TÊN QUÁI</label>
+                            <input type="text" id="mbfName" maxlength="50" autocomplete="off">
+                        </div>
+                        <div class="field">
+                            <label for="mbfType">KIỂU QUÁI</label>
+                            <select id="mbfType"></select>
+                        </div>
+                        <div class="field">
+                            <label for="mbfHp">HP</label>
+                            <input type="number" id="mbfHp" min="0">
+                        </div>
+                    </div>
+                    <div class="grid grid--3">
+                        <div class="field">
+                            <label for="mbfRangeMove">RANGE MOVE</label>
+                            <input type="number" id="mbfRangeMove" min="0">
+                        </div>
+                        <div class="field">
+                            <label for="mbfSpeed">SPEED</label>
+                            <input type="number" id="mbfSpeed" min="0">
+                        </div>
+                        <div class="field">
+                            <label for="mbfDartType">DART TYPE</label>
+                            <input type="number" id="mbfDartType" min="0">
+                        </div>
+                    </div>
+                    <div class="grid grid--3">
+                        <div class="field">
+                            <label for="mbfPercentDame">% SÁT THƯƠNG</label>
+                            <input type="number" id="mbfPercentDame">
+                        </div>
+                        <div class="field">
+                            <label for="mbfPercentTiemNang">% TIỀM NĂNG</label>
+                            <input type="number" id="mbfPercentTiemNang">
+                        </div>
+                        <div class="field">
+                            <label for="mbfPercentGold">% VÀNG</label>
+                            <input type="number" id="mbfPercentGold">
+                        </div>
+                    </div>
+                    <p class="field__hint" id="mbfMaps">—</p>
+                    <div class="modal__actions">
+                        <button class="btn btn--ghost" type="button" data-mob-close>Huỷ</button>
+                        <button class="btn btn--primary" type="button" id="mbfSave">Lưu Mẫu Quái</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODAL: SỬA NỘI TẠI ==================== -->
+<div class="modal" id="intrinsicModal" hidden>
+    <div class="modal__backdrop" data-intrinsic-close></div>
+    <div class="modal__panel modal__panel--wide">
+        <div class="modal__head">
+            <h3 id="intrinsicModalTitle">SỬA NỘI TẠI</h3>
+            <span class="player-modal__state" id="intrinsicModalState"></span>
+            <button class="modal__close" type="button" data-intrinsic-close title="Đóng">&times;</button>
+        </div>
+        <div class="modal__body">
+            <div class="card">
+                <div class="card__head">
+                    <h2 class="card__title-lg">THÔNG TIN NỘI TẠI</h2>
+                    <span class="card__hint">INTRINSIC</span>
+                </div>
+                <div class="card__body">
+                    <div class="field">
+                        <label for="itfName">TÊN (dùng p0 p1 p2 p3 làm chỗ trống, xuống dòng bằng Enter)</label>
+                        <textarea id="itfName" rows="2" spellcheck="false"></textarea>
+                    </div>
+                    <div class="grid grid--3">
+                        <div class="field">
+                            <label for="itfFrom1">THAM SỐ 1 — TỪ</label>
+                            <input type="number" id="itfFrom1">
+                        </div>
+                        <div class="field">
+                            <label for="itfTo1">THAM SỐ 1 — ĐẾN</label>
+                            <input type="number" id="itfTo1">
+                        </div>
+                        <div class="field">
+                            <label for="itfGender">HỆ SỬ DỤNG</label>
+                            <select id="itfGender"></select>
+                        </div>
+                    </div>
+                    <div class="grid grid--3">
+                        <div class="field">
+                            <label for="itfFrom2">THAM SỐ 2 — TỪ</label>
+                            <input type="number" id="itfFrom2">
+                        </div>
+                        <div class="field">
+                            <label for="itfTo2">THAM SỐ 2 — ĐẾN</label>
+                            <input type="number" id="itfTo2">
+                        </div>
+                        <div class="field">
+                            <label for="itfIcon">ICON (iconID)</label>
+                            <div class="shop-pick">
+                                <input type="number" id="itfIcon" min="0">
+                                <span class="shop-pick__thumb" id="itfIconThumb"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="field__hint" id="itfPreview">—</p>
+                    <div class="modal__actions">
+                        <button class="btn btn--danger" type="button" id="itfDelete">Xóa Nội Tại</button>
+                        <button class="btn btn--ghost" type="button" data-intrinsic-close>Huỷ</button>
+                        <button class="btn btn--primary" type="button" id="itfSave">Lưu Nội Tại</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card__head">
+                    <h2 class="card__title-lg">NHÂN VẬT ĐANG MANG NỘI TẠI NÀY</h2>
+                    <span class="card__hint" id="itfPlayerCount">0 nhân vật</span>
+                </div>
+                <div class="card__body">
+                    <div id="itfPlayers"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODAL: TÀI KHOẢN ==================== -->
+<div class="modal" id="accountModal" hidden>
+    <div class="modal__backdrop" data-account-close></div>
+    <div class="modal__panel modal__panel--wide player-modal">
+        <div class="modal__head">
+            <h3 id="accountModalTitle">TÀI KHOẢN</h3>
+            <span class="player-modal__state" id="accountModalState"></span>
+            <button class="modal__close" type="button" data-account-close title="Đóng">&times;</button>
+        </div>
+
+        <div class="tabs tabs--flat player-modal__tabs" id="accountTabs">
+            <button class="tab is-active" type="button" data-account-tab="info">Tài Khoản</button>
+            <button class="tab" type="button" data-account-tab="rights">Quyền &amp; Ví</button>
+            <button class="tab" type="button" data-account-tab="chars">Nhân Vật</button>
+            <button class="tab" type="button" data-account-tab="password">Mật Khẩu</button>
+        </div>
+
+        <div class="modal__body">
+
+            <div class="tabpane is-active" data-account-pane="info">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">THÔNG TIN TÀI KHOẢN</h2>
+                        <span class="card__hint" id="acfTimes">—</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--2">
+                            <div class="field">
+                                <label for="acfUsername">USERNAME</label>
+                                <input type="text" id="acfUsername" maxlength="20" autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label for="acfIp">ĐỊA CHỈ IP</label>
+                                <input type="text" id="acfIp" maxlength="50" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="acfAgeDays">SỐ NGÀY TUỔI TÀI KHOẢN</label>
+                                <input type="number" id="acfAgeDays" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="acfBdPlayer">BD_PLAYER</label>
+                                <input type="number" id="acfBdPlayer" step="any">
+                            </div>
+                            <div class="field">
+                                <label for="acfServerLogin">SERVER_LOGIN</label>
+                                <input type="number" id="acfServerLogin">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="acfMkc2">MKC2</label>
+                            <input type="text" id="acfMkc2" maxlength="100" autocomplete="off">
+                        </div>
+                        <div class="field">
+                            <label for="acfEmail">EMAIL (dữ liệu tài khoản; không sửa website bên ngoài)</label>
+                            <textarea id="acfEmail" rows="2" spellcheck="false"></textarea>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="acfSave">Lưu Thông Tin</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabpane" data-account-pane="rights">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">QUYỀN &amp; TRẠNG THÁI</h2>
+                        <span class="card__hint">NDVSqlFetcher đọc quyền game; đăng nhập panel dùng cấu hình riêng</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--2">
+                            <label class="check"><input type="checkbox" id="acfAdmin"> GAME ADMIN (is_admin, không cấp quyền panel)</label>
+                        </div>
+                        <div class="grid grid--2">
+                            <label class="check"><input type="checkbox" id="acfActive"> ĐÃ MỞ THÀNH VIÊN (active)</label>
+                        </div>
+                        <div class="grid grid--3">
+                            <label class="check"><input type="checkbox" id="acfBan"> KHOÁ TÀI KHOẢN (ban)</label>
+                            <div class="field">
+                                <label for="acfVip">VIP</label>
+                                <input type="number" id="acfVip" min="0">
+                            </div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="acfSaveRights">Lưu Quyền</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">VÍ &amp; TIỀN TỆ</h2>
+                        <span class="card__hint">SỬA TRỰC TIẾP GIÁ TRỊ</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="acfCash">CASH (ví Cash)</label>
+                                <input type="number" id="acfCash" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="acfDanap">TỔNG NẠP TÍCH LUỸ (danap)</label>
+                                <input type="number" id="acfDanap" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="acfCoin">COIN</label>
+                                <input type="number" id="acfCoin" min="0">
+                            </div>
+                        </div>
+                        <div class="grid grid--2">
+                            <div class="field">
+                                <label for="acfSotien">SỐ TIỀN (sotien, ví riêng)</label>
+                                <input type="number" id="acfSotien" min="0">
+                            </div>
+                            <div class="field">
+                                <label for="acfThoiVang">THỎI VÀNG</label>
+                                <input type="number" id="acfThoiVang" min="0">
+                            </div>
+                        </div>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="acfSaveMoney">Lưu Ví</button>
+                        </div>
+
+                        <p class="field__hint">Cộng / trừ nhanh (không ghi đè giá trị ô phía trên):</p>
+                        <div class="grid grid--3">
+                            <div class="field">
+                                <label for="acfMoneyField">CỘT TIỀN</label>
+                                <select id="acfMoneyField"></select>
+                            </div>
+                            <div class="field">
+                                <label for="acfMoneyAmount">SỐ LƯỢNG</label>
+                                <input type="number" id="acfMoneyAmount" min="1" value="1000">
+                            </div>
+                            <div class="field">
+                                <label>THAO TÁC</label>
+                                <div class="input-group">
+                                    <button class="btn btn--success" type="button" id="acfMoneyAdd">Cộng</button>
+                                    <button class="btn btn--warning" type="button" id="acfMoneySub">Trừ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">TÁC VỤ KHÁC</h2>
+                    </div>
+                    <div class="card__body">
+                        <div class="task-grid">
+                            <button class="btn" type="button" id="acfKick">Ngắt Kết Nối</button>
+                            <button class="btn btn--danger" type="button" id="acfDelete">Xóa Tài Khoản</button>
+                        </div>
+                        <p class="field__hint">
+                            Xoá tài khoản sẽ xoá luôn <b>toàn bộ nhân vật</b> của nó cùng dữ liệu con
+                            (shop ký gửi, lịch sử nhận quà, giftcode đã lưu) và lịch sử nạp — không thể hoàn tác.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabpane" data-account-pane="chars">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">NHÂN VẬT CỦA TÀI KHOẢN</h2>
+                        <span class="card__hint" id="acfCharCount">0 nhân vật</span>
+                    </div>
+                    <div class="card__body">
+                        <div class="table-wrap">
+                            <table class="table table--mini">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên</th>
+                                        <th>Hệ</th>
+                                        <th>Sức Mạnh</th>
+                                        <th>Vàng / Ngọc / Hồng Ngọc</th>
+                                        <th>Trạng Thái</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="acfCharBody"></tbody>
+                            </table>
+                            <div class="table-empty" id="acfCharEmpty" hidden>Tài khoản này chưa tạo nhân vật nào</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabpane" data-account-pane="password">
+                <div class="card">
+                    <div class="card__head">
+                        <h2 class="card__title-lg">ĐỔI MẬT KHẨU</h2>
+                        <span class="card__hint">LƯU DẠNG CHUỖI THÔ</span>
+                    </div>
+                    <div class="card__body">
+                        <p class="field__hint">API không trả mật khẩu hiện tại. Chỉ gửi mật khẩu mới khi xác nhận thay đổi.</p>
+                        <div class="grid grid--2">
+                            <div class="field">
+                                <label for="acfPassword">MẬT KHẨU MỚI</label>
+                                <input type="text" id="acfPassword" maxlength="100" autocomplete="off">
+                            </div>
+                            <div class="field">
+                                <label for="acfPassword2">NHẬP LẠI MẬT KHẨU MỚI</label>
+                                <input type="text" id="acfPassword2" maxlength="100" autocomplete="off">
+                            </div>
+                        </div>
+                        <p class="field__hint">
+                            Game đăng nhập bằng <b>where username = ? and password = ?</b> nên mật khẩu
+                            được lưu nguyên văn — không băm. Hãy dùng mật khẩu mạnh cho tài khoản quản trị.
+                        </p>
+                        <div class="modal__actions">
+                            <button class="btn btn--primary" type="button" id="acfSavePassword">Đổi Mật Khẩu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODAL: TẠO TÀI KHOẢN ==================== -->
+<div class="modal modal--stacked" id="accountCreateModal" hidden>
+    <div class="modal__backdrop" data-account-create-close></div>
+    <div class="modal__panel">
+        <div class="modal__head">
+            <h3>Tạo Tài Khoản Mới</h3>
+            <button class="modal__close" type="button" data-account-create-close title="Đóng">&times;</button>
+        </div>
+        <form class="modal__body" id="accountCreateForm" autocomplete="off">
+            <div class="field">
+                <label for="acCreateUser">USERNAME (3-20 ký tự, chỉ chữ, số, _ và .)</label>
+                <input type="text" id="acCreateUser" maxlength="20" required autocomplete="off">
+            </div>
+            <div class="field">
+                <label for="acCreatePass">MẬT KHẨU</label>
+                <input type="text" id="acCreatePass" maxlength="100" required autocomplete="off">
+            </div>
+            <div class="field">
+                <label for="acCreateIp">ĐỊA CHỈ IP (không bắt buộc)</label>
+                <input type="text" id="acCreateIp" maxlength="50" autocomplete="off">
+            </div>
+            <p class="field__hint">Người chơi đăng nhập lần đầu sẽ được chuyển sang màn hình tạo nhân vật.</p>
+            <div class="modal__actions">
+                <button class="btn btn--ghost" type="button" data-account-create-close>Huỷ</button>
+                <button class="btn btn--primary" type="submit">Tạo Tài Khoản</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ==================== MODAL: BẢN GHI DNS CLOUDFLARE ==================== -->
+<div class="modal modal--stacked" id="cfRecordModal" hidden>
+    <div class="modal__backdrop" data-cf-close></div>
+    <div class="modal__panel">
+        <div class="modal__head">
+            <h3 id="cfModalTitle">Thêm Bản Ghi DNS</h3>
+            <span class="player-modal__state" id="cfModalState"></span>
+            <button class="modal__close" type="button" data-cf-close title="Đóng">&times;</button>
+        </div>
+        <div class="modal__body">
+            <div class="grid grid--2">
+                <div class="field">
+                    <label for="cfType">LOẠI BẢN GHI</label>
+                    <select id="cfType"></select>
+                </div>
+                <div class="field">
+                    <label for="cfTtl">TTL</label>
+                    <select id="cfTtl"></select>
+                </div>
+            </div>
+            <div class="field">
+                <label for="cfName">TÊN</label>
+                <input type="text" id="cfName" maxlength="255" placeholder="vi-du.ten-mien.com"
+                       autocomplete="off" spellcheck="false">
+                <p class="field__hint">Gõ tên đầy đủ, ví dụ <b>game.ten-mien.com</b> — không dùng dấu chấm cuối.</p>
+            </div>
+            <div class="field">
+                <label for="cfContent">GIÁ TRỊ</label>
+                <input type="text" id="cfContent" maxlength="2000" placeholder="1.2.3.4 hoặc đích của CNAME"
+                       autocomplete="off" spellcheck="false">
+            </div>
+            <div class="field">
+                <label for="cfPriority">ƯU TIÊN (chỉ MX / SRV)</label>
+                <input type="number" id="cfPriority" value="10" min="0" max="65535">
+            </div>
+            <label class="check"><input type="checkbox" id="cfProxied"> QUA CLOUDFLARE (proxy cam)</label>
+            <p class="field__hint">
+                Chỉ bản ghi A, AAAA và CNAME mới bật được proxy. Bật proxy thì IP thật bị ẩn.
+            </p>
+        </div>
+        <div class="modal__actions">
+            <button class="btn btn--danger" type="button" id="cfDelete" hidden>Xoá Bản Ghi</button>
+            <button class="btn btn--ghost" type="button" data-cf-close>Huỷ</button>
+            <button class="btn btn--primary" type="button" id="cfSave">Lưu Bản Ghi</button>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MODAL: BẢNG CHỌN ITEM / OPTION ==================== -->
+<div class="modal modal--stacked" id="pickerModal" hidden>
+    <div class="modal__backdrop" data-pick-close></div>
+    <div class="modal__panel modal__panel--wide">
+        <div class="modal__head">
+            <h3 id="pickerTitle">Chọn vật phẩm</h3>
+            <button class="modal__close" type="button" data-pick-close title="Đóng">&times;</button>
+        </div>
+
+        <div class="picker__bar">
+            <input type="text" id="pickerSearch" class="picker__search" autocomplete="off"
+                   placeholder="Tìm theo tên...">
+            <span class="picker__total" id="pickerTotal"></span>
+        </div>
+
+        <div class="picker__list" id="pickerList"></div>
+
+        <div class="modal__actions">
+            <span class="pick__count" id="pickerCount">Đã chọn 0</span>
+            <button class="btn btn--ghost" type="button" id="pickerToggleAll">Chọn tất cả</button>
+            <button class="btn btn--primary" type="button" id="pickerAdd">Thêm</button>
+        </div>
+    </div>
+</div>
+
+<dialog id="bdropIconDialog" aria-labelledby="bdropIconTitle" aria-describedby="bdropIconItemId">
+    <div class="bdrop-icon-head"><h3 id="bdropIconTitle"></h3><button class="btn" id="bdropIconClose" type="button" autofocus>Đóng</button></div>
+    <p class="field__hint" id="bdropIconItemId"></p>
+    <div class="bdrop-icon-stage"><div id="bdropIconFrame"></div><p id="bdropIconStatus" role="status"></p></div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog class="lq-dialog" id="lqOptionDialog">
+    <form id="lqOptionForm">
+        <div class="modal__head"><h3 id="lqOptionTitle">Option quà mốc</h3><button type="button" class="modal__close" data-lq-close="lqOptionDialog" aria-label="Đóng">&times;</button></div>
+        <div class="modal__body"><p class="field__hint">Không đặt option riêng sẽ dùng chỉ số mặc định của vật phẩm.</p><div id="lqOptionRows"></div>
+            <button class="btn" type="button" id="lqOptionAdd">+ Thêm option</button>
+            <div class="modal__actions"><button class="btn" type="button" data-lq-close="lqOptionDialog">Huỷ</button><button class="btn btn--primary" type="submit">Áp dụng option</button></div>
+        </div>
+    </form>
+</dialog>
+<dialog class="lq-dialog" id="lqPickerDialog" aria-labelledby="lqPickerTitle">
+    <div class="modal__head"><h3 id="lqPickerTitle">Thêm vật phẩm</h3><button class="modal__close" type="button" data-lq-close="lqPickerDialog" aria-label="Đóng">&times;</button></div>
+    <div class="modal__body">
+        <div class="field"><label for="lqPickerSearch">Tìm tên hoặc ID vật phẩm</label><input id="lqPickerSearch" type="search" placeholder="Ví dụ: thỏi vàng, 457…" autocomplete="off"></div>
+        <div class="field" id="lqPickerQuantityField"><label for="lqPickerQuantity">Số lượng quà mốc</label><input id="lqPickerQuantity" type="number" min="1" max="2147483647" step="1" value="1"></div>
+        <p class="field__hint" id="lqPickerStatus" role="status">Chọn vật phẩm để thêm.</p>
+        <div class="lq-search-results" id="lqPickerResults"></div>
+        <div class="modal__actions"><button class="btn" type="button" data-lq-close="lqPickerDialog">Xong</button></div>
+    </div>
+</dialog>
+<dialog class="lq-dialog lq-icon-dialog" id="lqIconDialog"><div class="modal__head"><h3 id="lqIconTitle">Icon vật phẩm</h3><button class="modal__close" type="button" data-lq-close="lqIconDialog" aria-label="Đóng">&times;</button></div><div class="modal__body"><p id="lqIconStatus" role="status"></p><div id="lqIconFrame"></div></div></dialog>
+<dialog class="lq-dialog dp-dialog" id="dpEditor" aria-labelledby="dpTitle">
+    <div class="modal__head"><h3 id="dpTitle">Gói donate</h3><button class="modal__close" type="button" id="dpClose" aria-label="Đóng">&times;</button></div>
+    <form id="dpForm"><div class="modal__body">
+        <div class="grid grid--2"><div class="field"><label for="dpName">TÊN GÓI</label><input id="dpName" type="text" maxlength="100" required></div><div class="field"><label for="dpCost">GIÁ VNĐ (SỐ DƯ SOTIEN)</label><input id="dpCost" type="number" min="1" max="2147483647" step="1" required></div></div>
+        <div class="field"><label for="dpDetail">MÔ TẢ HIỂN THỊ TẠI NPC</label><textarea id="dpDetail" maxlength="500" rows="3"></textarea></div>
+        <div class="grid grid--2"><div class="field"><label for="dpSort">THỨ TỰ (SỐ NHỎ HIỆN TRƯỚC)</label><input id="dpSort" type="number" min="-2147483648" max="2147483647" step="1" required></div><div class="field dp-check"><label><input id="dpActive" type="checkbox"> Đang bán tại NPC</label></div></div>
+        <p class="field__hint">Mỗi tài khoản chỉ mua gói này một lần. Sửa quà hoặc bật lại gói không xóa lịch sử đã mua.</p>
+        <div id="dpWarning" class="lq-warnings" hidden><p id="dpWarningText"></p><details><summary>Dữ liệu quà cũ</summary><pre id="dpRaw"></pre></details></div>
+        <h4>Phần thưởng</h4><div id="dpRewards"></div>
+        <div class="field"><label for="dpItemSearch">TÌM ĐỂ THÊM VẬT PHẨM (TÊN HOẶC ID)</label><input id="dpItemSearch" type="search" placeholder="Ví dụ: đá ngũ sắc, trứng, 674…" autocomplete="off"></div><div id="dpItemResults" class="lq-search-results" aria-live="polite"></div>
+        <p id="dpEditStatus" role="status"></p>
+    </div><div class="modal__actions"><button class="btn" type="button" id="dpCancel">Hủy</button><button class="btn btn--primary" type="submit" id="dpSave">Lưu gói donate</button></div></form>
+</dialog>
+<dialog class="lq-dialog lq-icon-dialog" id="dpIconDialog" aria-labelledby="dpIconTitle"><div class="modal__head"><h3 id="dpIconTitle">Icon vật phẩm</h3><button class="modal__close" type="button" id="dpIconClose" aria-label="Đóng">&times;</button></div><div class="modal__body"><p id="dpIconStatus" role="status"></p><div id="dpIconFrame"></div></div></dialog>
+<script src="js/api.js"></script>
+<script src="js/responsive.js"></script>
+<script src="js/panel.js"></script>
+<script src="js/drop.js"></script>
+<script src="js/boss.js"></script>
+<script src="js/top.js"></script>
+<script src="js/lucky-round.js"></script>
+<script src="js/donate-package.js"></script>
+<script src="js/database-reset.js"></script>
+    <script src="js/boss-drop.js"></script>
+    <script src="js/combine-rates.js"></script>
+</body>
+</html>
