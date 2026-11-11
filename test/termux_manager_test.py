@@ -76,14 +76,49 @@ class TermuxSetupTest(unittest.TestCase):
 
     def test_termux_package_root_fallback(self):
         (self.root / "var/lib/mysql/mysql").mkdir(parents=True)
-        results = [subprocess.CompletedProcess([], 0), subprocess.CompletedProcess([], 1, ""),
-                   subprocess.CompletedProcess([], 0, "3306\n")]
+        results = [subprocess.CompletedProcess([], 0), subprocess.CompletedProcess([], 0, "3306\n")]
         with patch.dict(manager.os.environ, {"PREFIX": str(self.root)}), \
              patch.object(manager, "tool", side_effect=lambda name: name), \
              patch.object(manager.subprocess, "run", side_effect=results):
             client, port = manager.database()
         self.assertIn("--user=root", client)
         self.assertEqual(port, 3306)
+
+    def test_setup_selects_root_with_global_grant_rights(self):
+        (self.root / "var/lib/mysql/mysql").mkdir(parents=True)
+        results = [subprocess.CompletedProcess([], 0), subprocess.CompletedProcess([], 0, "3306\n"),
+                   subprocess.CompletedProcess([], 0, "GRANT ALL PRIVILEGES ON *.* TO `root`@`localhost` WITH GRANT OPTION\n")]
+        with patch.dict(manager.os.environ, {"PREFIX": str(self.root)}), \
+             patch.object(manager, "tool", side_effect=lambda name: name), \
+             patch.object(manager.subprocess, "run", side_effect=results):
+            client, port = manager.database(admin=True)
+        self.assertIn("--user=root", client)
+        self.assertEqual(port, 3306)
+
+    def test_successful_select_from_limited_user_is_not_admin_access(self):
+        (self.root / "var/lib/mysql/mysql").mkdir(parents=True)
+        results = [subprocess.CompletedProcess([], 0),
+                   subprocess.CompletedProcess([], 1, ""),
+                   subprocess.CompletedProcess([], 0, "3306\n"),
+                   subprocess.CompletedProcess([], 0, "GRANT USAGE ON *.* TO ''@'localhost'\n")]
+        with patch.dict(manager.os.environ, {"PREFIX": str(self.root)}), \
+             patch.object(manager, "tool", side_effect=lambda name: name), \
+             patch.object(manager.subprocess, "run", side_effect=results) as run:
+            with self.assertRaisesRegex(RuntimeError, "du quyen"):
+                manager.database(admin=True)
+        self.assertEqual(run.call_count, 4)
+        self.assertEqual(self.config.read_text(), "original-config")
+
+    def test_setup_requests_admin_rights_before_any_sql_creation(self):
+        with patch.object(manager, "tool"), patch.object(manager.server_cli, "java_tool"), \
+             patch.object(manager.server_cli, "require_java"), patch("builtins.input", return_value="TAO MOI"), \
+             patch.object(manager, "database", side_effect=RuntimeError("No admin privileges")) as database, \
+             patch.object(manager.subprocess, "run") as run:
+            with self.assertRaisesRegex(RuntimeError, "No admin"):
+                manager.setup()
+            database.assert_called_once_with(admin=True)
+            run.assert_not_called()
+        self.assertEqual(self.config.read_text(), "original-config")
 
 
 if __name__ == "__main__":

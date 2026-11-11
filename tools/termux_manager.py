@@ -22,7 +22,7 @@ def tool(name):
     return path
 
 
-def database():
+def database(admin=False):
     prefix = Path(os.environ["PREFIX"])
     datadir = prefix / "var/lib/mysql"
     STATE.mkdir(mode=0o700, exist_ok=True)
@@ -45,11 +45,27 @@ def database():
             raise RuntimeError("MariaDB chua san sang. Xem .termux/mariadb.log")
     # Existing Termux packages may initialize root with normal authentication;
     # manually initialized installs may instead authorize the Android app user.
-    for candidate in (client, client + ["--user=root"]):
+    for candidate in (client + ["--user=root"], client):
         result = subprocess.run(candidate + ["-N", "-B", "-e", "SELECT @@port"],
                                 capture_output=True, text=True)
-        if result.returncode == 0:
-            return candidate, int(result.stdout.strip())
+        if result.returncode != 0:
+            continue
+        if admin:
+            grants = subprocess.run(candidate + ["-N", "-B", "-e", "SHOW GRANTS"],
+                                    capture_output=True, text=True)
+            # A successful SELECT also works for anonymous/limited users. Setup
+            # needs global create/grant rights before creating any credentials.
+            allowed = grants.returncode == 0 and any(
+                re.search(r"GRANT\s+ALL PRIVILEGES\s+ON\s+\*\.\*\s+TO\s+", line, re.I)
+                and re.search(r"WITH GRANT OPTION", line, re.I)
+                for line in grants.stdout.splitlines())
+            if not allowed:
+                continue
+        return candidate, int(result.stdout.strip())
+    if admin:
+        raise RuntimeError("Khong co tai khoan MariaDB du quyen tao user/database. "
+                           "Can root MariaDB hoac user co ALL PRIVILEGES ON *.* WITH GRANT OPTION. "
+                           "Khong co du lieu hay cau hinh nao bi ghi de.")
     raise RuntimeError("Khong dang nhap duoc MariaDB qua socket (user Termux/root). "
                        "Neu da dat mat khau DB, cau hinh data/config/alyra.properties thu cong.")
 
@@ -66,7 +82,7 @@ def setup():
     print("Cau hinh DB hien tai se duoc sao luu; SQL mau co the chua tai khoan/du lieu cu.")
     if input("Nhap TAO MOI de tiep tuc (Enter de huy): ").strip() != "TAO MOI":
         return
-    client, port = database()
+    client, port = database(admin=True)
     names = ("supervip_termux_acc", "supervip_termux_data")
     # Refuse both existing and partially imported databases on repeat setup.
     existing = subprocess.run(client + ["-N", "-B", "-e",
@@ -83,7 +99,8 @@ def setup():
         sql += "CREATE DATABASE `" + name + "` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n"
         for host in ("127.0.0.1", "localhost"):
             sql += "GRANT ALL PRIVILEGES ON `" + name + "`.* TO '" + account + "'@'" + host + "';\n"
-    subprocess.run(client, input=sql, text=True, check=True)
+    # MariaDB may echo the failing CREATE USER statement, including its password.
+    subprocess.run(client, input=sql, text=True, check=True, capture_output=True)
     for name, dump in zip(names, ("nro_acc.sql", "nro_data.sql")):
         with (ROOT / "sql" / dump).open("rb") as source:
             subprocess.run(client + [name], stdin=source, check=True)
