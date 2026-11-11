@@ -1381,11 +1381,9 @@ public class Service {
             msg = new Message(-94);
             for (Skill skill : pl.playerSkill.skills) {
                 msg.writer().writeShort(skill.skillId);
-                int timeLeft = (int) (skill.lastTimeUseThisSkill + skill.coolDown - System.currentTimeMillis());
-                if (timeLeft < 0) {
-                    timeLeft = 0;
-                }
-                msg.writer().writeInt(timeLeft);
+                long timeLeft = skill.lastTimeUseThisSkill + skill.coolDown - System.currentTimeMillis();
+                // Clamp before narrowing: unused/expired skills can exceed the int range below zero.
+                msg.writer().writeInt((int) Math.min(Integer.MAX_VALUE, Math.max(0L, timeLeft)));
             }
             pl.sendMessage(msg);
             msg.cleanup();
@@ -1399,11 +1397,8 @@ public class Service {
         try {
             msg = new Message(-94);
             msg.writer().writeShort(skill.skillId);
-            int timeLeft = (int) (skill.lastTimeUseThisSkill + skill.coolDown - System.currentTimeMillis());
-            if (timeLeft < 0) {
-                timeLeft = 0;
-            }
-            msg.writer().writeInt(timeLeft);
+            long timeLeft = skill.lastTimeUseThisSkill + skill.coolDown - System.currentTimeMillis();
+            msg.writer().writeInt((int) Math.min(Integer.MAX_VALUE, Math.max(0L, timeLeft)));
             pl.sendMessage(msg);
             msg.cleanup();
         } catch (Exception e) {

@@ -41,6 +41,11 @@ jobs:
           mkdir -p build/driver-check
           javac -proc:none -d build/driver-check test/JdbcDriverLoadTest.java
           java -cp "dist/chienbinhlucy.jar:build/driver-check" JdbcDriverLoadTest
+      - name: Verify starter punch and skill cooldown packets
+        run: |
+          mkdir -p build/cooldown-check
+          javac -proc:none -cp dist/chienbinhlucy.jar -d build/cooldown-check test/NewPlayerSkillCooldownTest.java
+          java -cp "dist/chienbinhlucy.jar:build/cooldown-check" NewPlayerSkillCooldownTest
       - name: Connect production database layer to real MariaDB 10.11
         env:
           NRO_JDBC_INTEGRATION: 'true'
